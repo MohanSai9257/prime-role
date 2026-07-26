@@ -64,7 +64,10 @@ class UserSettings(Base):
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
     base_resume_path: Mapped[str] = mapped_column(Text, default="")
-    company_file_path: Mapped[str] = mapped_column(Text, default="")
+    company_type: Mapped[str] = mapped_column(
+        String(30),
+        default="IMPLEMENTATION",
+    )
     output_directory: Mapped[str] = mapped_column(Text, default="")
     start_date: Mapped[date] = mapped_column(Date)
     target_roles: Mapped[list[str]] = mapped_column(JSON, default=list)

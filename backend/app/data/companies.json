@@ -1,0 +1,1396 @@
+{
+  "schema_version": 1,
+  "source_file": "Companies-List.xlsx",
+  "source_sha256": "b98914dd2e9a9df0cae432e22fdfbb628c4cfeeed8c92b743dd831be8a76544a",
+  "source_sheets": {
+    "DIRECT_CLIENT": "Direct Client",
+    "IMPLEMENTATION": "Implementation",
+    "VENDOR": "Vendor"
+  },
+  "companies": {
+    "DIRECT_CLIENT": [],
+    "IMPLEMENTATION": [
+      {
+        "company_name": "Cognizant",
+        "headquarters": "Teaneck, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/cognizant",
+        "careers_url": "https://careers.cognizant.com/"
+      },
+      {
+        "company_name": "Tata Consultancy Services (TCS)",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/tata-consultancy-services",
+        "careers_url": "https://www.tcs.com/careers"
+      },
+      {
+        "company_name": "Infosys",
+        "headquarters": "Richardson, TX",
+        "linkedin_url": "https://www.linkedin.com/company/infosys",
+        "careers_url": "https://www.infosys.com/careers/"
+      },
+      {
+        "company_name": "IBM",
+        "headquarters": "Armonk, NY",
+        "linkedin_url": "https://www.linkedin.com/company/ibm",
+        "careers_url": "https://www.ibm.com/careers"
+      },
+      {
+        "company_name": "HCLTech",
+        "headquarters": "Sunnyvale, CA",
+        "linkedin_url": "https://www.linkedin.com/company/hcltech",
+        "careers_url": "https://www.hcltech.com/careers"
+      },
+      {
+        "company_name": "Capgemini",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/capgemini",
+        "careers_url": "https://www.capgemini.com/careers/"
+      },
+      {
+        "company_name": "LTIMindtree",
+        "headquarters": "Irving, TX",
+        "linkedin_url": "https://www.linkedin.com/company/ltimindtree",
+        "careers_url": "https://careers.ltimindtree.com/"
+      },
+      {
+        "company_name": "Compunnel Inc.",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/compunnel-software-group",
+        "careers_url": "https://www.compunnel.com/careers/"
+      },
+      {
+        "company_name": "Wipro",
+        "headquarters": "East Brunswick, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/wipro",
+        "careers_url": "https://careers.wipro.com/"
+      },
+      {
+        "company_name": "Mphasis",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/mphasis",
+        "careers_url": "https://careers.mphasis.com/"
+      },
+      {
+        "company_name": "Tech Mahindra",
+        "headquarters": "Plano, TX",
+        "linkedin_url": "https://www.linkedin.com/company/tech-mahindra",
+        "careers_url": "https://careers.techmahindra.com/"
+      },
+      {
+        "company_name": "UST",
+        "headquarters": "Aliso Viejo, CA",
+        "linkedin_url": "https://www.linkedin.com/company/ustglobal",
+        "careers_url": "https://www.ust.com/en/careers"
+      },
+      {
+        "company_name": "Kforce Inc",
+        "headquarters": "Tampa, FL",
+        "linkedin_url": "https://www.linkedin.com/company/kforce",
+        "careers_url": "https://www.kforce.com/find-work/search-jobs/"
+      },
+      {
+        "company_name": "CGI",
+        "headquarters": "Fairfax, VA",
+        "linkedin_url": "https://www.linkedin.com/company/cgi",
+        "careers_url": "https://www.cgi.com/us/en-us/careers"
+      },
+      {
+        "company_name": "Virtusa",
+        "headquarters": "Southborough, MA",
+        "linkedin_url": "https://www.linkedin.com/company/virtusa",
+        "careers_url": "https://www.virtusa.com/careers"
+      },
+      {
+        "company_name": "Randstad Digital Americas",
+        "headquarters": "Atlanta, GA",
+        "linkedin_url": "https://www.linkedin.com/company/randstad-digital-americas",
+        "careers_url": "https://www.randstadusa.com/jobs/"
+      },
+      {
+        "company_name": "Hexaware Technologies",
+        "headquarters": "Iselin, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/hexaware-technologies",
+        "careers_url": "https://hexaware.com/careers/"
+      },
+      {
+        "company_name": "Hewlett Packard Enterprise",
+        "headquarters": "Houston, TX",
+        "linkedin_url": "https://www.linkedin.com/company/hewlett-packard-enterprise",
+        "careers_url": "https://careers.hpe.com/"
+      },
+      {
+        "company_name": "Innova Solutions",
+        "headquarters": "Atlanta, GA",
+        "linkedin_url": "https://www.linkedin.com/company/innova-solutions",
+        "careers_url": "https://www.linkedin.com/company/innova-solutions/jobs/"
+      },
+      {
+        "company_name": "Fiserv",
+        "headquarters": "Milwaukee, WI",
+        "linkedin_url": "https://www.linkedin.com/company/fiserv",
+        "careers_url": "https://www.linkedin.com/company/fiserv/jobs/"
+      },
+      {
+        "company_name": "CitiusTech",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/citiustech",
+        "careers_url": "https://www.citiustech.com/careers"
+      },
+      {
+        "company_name": "Mastech Digital",
+        "headquarters": "Moon Township, PA",
+        "linkedin_url": "https://www.linkedin.com/company/mastech",
+        "careers_url": "https://www.mastechdigital.com/careers/"
+      },
+      {
+        "company_name": "V-Soft Consulting Group, Inc.",
+        "headquarters": "Louisville, KY",
+        "linkedin_url": "https://www.linkedin.com/company/vsoftconsulting",
+        "careers_url": "https://www.vsoftconsulting.com/careers/"
+      },
+      {
+        "company_name": "HTC Global Services",
+        "headquarters": "Troy, MI",
+        "linkedin_url": "https://www.linkedin.com/company/htc-global-services",
+        "careers_url": "https://www.htcinc.com/careers/"
+      },
+      {
+        "company_name": "Coforge",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/coforge-tech",
+        "careers_url": "https://careers.coforge.com/"
+      },
+      {
+        "company_name": "NTT DATA",
+        "headquarters": "Plano, TX",
+        "linkedin_url": "https://www.linkedin.com/company/nttdata",
+        "careers_url": "https://careers.nttdata.com/"
+      },
+      {
+        "company_name": "NTT DATA North America",
+        "headquarters": "Plano, TX",
+        "linkedin_url": "https://www.linkedin.com/company/ntt-data-americas",
+        "careers_url": "https://careers.nttdata.com/"
+      },
+      {
+        "company_name": "Atos",
+        "headquarters": "Irving, TX",
+        "linkedin_url": "https://www.linkedin.com/company/atos",
+        "careers_url": "https://atos.net/en/careers"
+      },
+      {
+        "company_name": "Persistent Systems",
+        "headquarters": "Santa Clara, CA",
+        "linkedin_url": "https://www.linkedin.com/company/persistent-systems",
+        "careers_url": "https://www.persistent.com/careers/"
+      },
+      {
+        "company_name": "Birlasoft",
+        "headquarters": "Edison, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/birlasoft",
+        "careers_url": "https://www.birlasoft.com/careers"
+      },
+      {
+        "company_name": "Pyramid Consulting, Inc.",
+        "headquarters": "Alpharetta, GA",
+        "linkedin_url": "https://www.linkedin.com/company/pyramid-consulting",
+        "careers_url": "https://www.pyramidci.com/careers/"
+      },
+      {
+        "company_name": "Zensar Technologies",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/zensar",
+        "careers_url": "https://www.zensar.com/careers"
+      },
+      {
+        "company_name": "Apexon",
+        "headquarters": "Santa Clara, CA",
+        "linkedin_url": "https://www.linkedin.com/company/apexon",
+        "careers_url": "https://www.apexon.com/careers/"
+      },
+      {
+        "company_name": "Nagarro",
+        "headquarters": "San Jose, CA",
+        "linkedin_url": "https://www.linkedin.com/company/nagarro",
+        "careers_url": "https://www.nagarro.com/en/careers"
+      },
+      {
+        "company_name": "Perficient",
+        "headquarters": "St. Louis, MO",
+        "linkedin_url": "https://www.linkedin.com/company/perficient",
+        "careers_url": "https://www.perficient.com/careers"
+      },
+      {
+        "company_name": "YASH Technologies",
+        "headquarters": "East Moline, IL",
+        "linkedin_url": "https://www.linkedin.com/company/yash-technologies",
+        "careers_url": "https://www.yash.com/careers/"
+      },
+      {
+        "company_name": "EPAM Systems",
+        "headquarters": "Newtown, PA",
+        "linkedin_url": "https://www.linkedin.com/company/epam-systems",
+        "careers_url": "https://www.epam.com/careers"
+      },
+      {
+        "company_name": "MOURI Tech",
+        "headquarters": "Irving, TX",
+        "linkedin_url": "https://www.linkedin.com/company/mouritech",
+        "careers_url": "https://www.mouritech.com/careers/"
+      },
+      {
+        "company_name": "Xoriant",
+        "headquarters": "Sunnyvale, CA",
+        "linkedin_url": "https://www.linkedin.com/company/xoriant",
+        "careers_url": "https://www.xoriant.com/careers"
+      },
+      {
+        "company_name": "Aditi Consulting",
+        "headquarters": "Bellevue, WA",
+        "linkedin_url": "https://www.linkedin.com/company/aditiconsulting",
+        "careers_url": "https://www.linkedin.com/company/aditiconsulting/jobs/"
+      },
+      {
+        "company_name": "KYYBA Inc",
+        "headquarters": "Farmington Hills, MI",
+        "linkedin_url": "https://www.linkedin.com/company/kyyba-inc",
+        "careers_url": "https://kyyba.com/careers/"
+      },
+      {
+        "company_name": "LanceSoft, Inc.",
+        "headquarters": "Herndon, VA",
+        "linkedin_url": "https://www.linkedin.com/company/lancesoft",
+        "careers_url": "https://www.linkedin.com/company/lancesoft/jobs/"
+      },
+      {
+        "company_name": "DXC Technology",
+        "headquarters": "Ashburn, VA",
+        "linkedin_url": "https://www.linkedin.com/company/dxctechnology",
+        "careers_url": "https://careers.dxc.com/"
+      },
+      {
+        "company_name": "Avanade",
+        "headquarters": "Seattle, WA",
+        "linkedin_url": "https://www.linkedin.com/company/avanade",
+        "careers_url": "https://www.avanade.com/en-us/career"
+      },
+      {
+        "company_name": "FPT Software",
+        "headquarters": "U.S. office in Richardson, TX",
+        "linkedin_url": "https://www.linkedin.com/company/fpt-software",
+        "careers_url": "https://fptsoftware.com/careers/"
+      },
+      {
+        "company_name": "Kyndryl",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/kyndryl",
+        "careers_url": "https://www.kyndryl.com/us/en/careers"
+      },
+      {
+        "company_name": "Siri InfoSolutions, Inc.",
+        "headquarters": "Edison, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/siriinfo",
+        "careers_url": "https://www.linkedin.com/company/siriinfo/jobs/"
+      },
+      {
+        "company_name": "AgreeYa Solutions",
+        "headquarters": "Folsom, CA",
+        "linkedin_url": "https://www.linkedin.com/company/agreeya-solutions",
+        "careers_url": "https://www.agreeya.com/careers/"
+      },
+      {
+        "company_name": "VDart",
+        "headquarters": "Alpharetta, GA",
+        "linkedin_url": "https://www.linkedin.com/company/vdart",
+        "careers_url": "https://www.vdart.com/careers/"
+      },
+      {
+        "company_name": "Kellton",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/kellton",
+        "careers_url": "https://www.linkedin.com/company/kellton/jobs/"
+      },
+      {
+        "company_name": "Sutherland",
+        "headquarters": "Pittsford, NY",
+        "linkedin_url": "https://www.linkedin.com/company/sutherland-global",
+        "careers_url": "https://www.jobs.sutherlandglobal.com/"
+      },
+      {
+        "company_name": "22nd Century Technologies Inc.",
+        "headquarters": "McLean, VA",
+        "linkedin_url": "https://www.linkedin.com/company/22ndcenturytechnologies",
+        "careers_url": "https://www.linkedin.com/company/22ndcenturytechnologies/jobs/"
+      },
+      {
+        "company_name": "Adastra",
+        "headquarters": "U.S. offices in TX, FL",
+        "linkedin_url": "https://www.linkedin.com/company/adastracorp",
+        "careers_url": "https://www.linkedin.com/company/adastracorp/jobs/"
+      },
+      {
+        "company_name": "AHEAD",
+        "headquarters": "Chicago, IL",
+        "linkedin_url": "https://www.linkedin.com/company/ahead_2",
+        "careers_url": "https://www.ahead.com/careers"
+      },
+      {
+        "company_name": "AITP-Chicago",
+        "headquarters": "Chicago, IL",
+        "linkedin_url": "https://www.linkedin.com/company/aitp-windycity",
+        "careers_url": "https://www.linkedin.com/company/aitp-windycity/jobs/"
+      },
+      {
+        "company_name": "Andersen Lab",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/andersen-softwaredev",
+        "careers_url": "https://andersenlab.com/careers"
+      },
+      {
+        "company_name": "Apex Systems",
+        "headquarters": "Glen Allen, VA",
+        "linkedin_url": "https://www.linkedin.com/company/apex-systems",
+        "careers_url": "https://www.apexsystems.com/careers"
+      },
+      {
+        "company_name": "ApTask",
+        "headquarters": "Iselin, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/aptask",
+        "careers_url": "https://www.linkedin.com/company/aptask/jobs/"
+      },
+      {
+        "company_name": "Aspire Systems",
+        "headquarters": "Oak Brook, IL",
+        "linkedin_url": "https://www.linkedin.com/company/aspire-systems",
+        "careers_url": "https://www.linkedin.com/company/aspire-systems/jobs/"
+      },
+      {
+        "company_name": "BCforward",
+        "headquarters": "Indianapolis, IN",
+        "linkedin_url": "https://www.linkedin.com/company/bcforward",
+        "careers_url": "https://www.bcforward.com/careers/"
+      },
+      {
+        "company_name": "BlackStone eIT",
+        "headquarters": "Seattle, WA",
+        "linkedin_url": "https://www.linkedin.com/company/blackstoneeit",
+        "careers_url": "https://www.linkedin.com/company/blackstoneeit/jobs/"
+      },
+      {
+        "company_name": "Brillio",
+        "headquarters": "Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/brillio",
+        "careers_url": "https://www.brillio.com/careers/"
+      },
+      {
+        "company_name": "Brooksource",
+        "headquarters": "Indianapolis, IN",
+        "linkedin_url": "https://www.linkedin.com/company/brooksource",
+        "careers_url": "https://www.brooksource.com/careers/"
+      },
+      {
+        "company_name": "By Light Professional IT Services",
+        "headquarters": "McLean, VA",
+        "linkedin_url": "https://www.linkedin.com/company/by-light-professional-it-services",
+        "careers_url": "https://www.linkedin.com/company/by-light-professional-it-services/jobs/"
+      },
+      {
+        "company_name": "CACI International Inc",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/caci-international-inc",
+        "careers_url": "https://careers.caci.com/"
+      },
+      {
+        "company_name": "Carahsoft",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/carahsoft",
+        "careers_url": "https://www.carahsoft.com/careers"
+      },
+      {
+        "company_name": "CBTS",
+        "headquarters": "Cincinnati, OH",
+        "linkedin_url": "https://www.linkedin.com/company/cbts-technology-covered",
+        "careers_url": "https://www.linkedin.com/company/cbts-technology-covered/jobs/"
+      },
+      {
+        "company_name": "CDW",
+        "headquarters": "Vernon Hills, IL",
+        "linkedin_url": "https://www.linkedin.com/company/cdw",
+        "careers_url": "https://www.cdwjobs.com/"
+      },
+      {
+        "company_name": "Cloud Hub IT Solutions",
+        "headquarters": "Fort Myers, FL",
+        "linkedin_url": "https://www.linkedin.com/company/cloud-hub-it-solutions",
+        "careers_url": "https://www.linkedin.com/company/cloud-hub-it-solutions/jobs/"
+      },
+      {
+        "company_name": "Coastal",
+        "headquarters": "Palm Coast, FL",
+        "linkedin_url": "https://www.linkedin.com/company/coastal-us",
+        "careers_url": "https://www.linkedin.com/company/coastal-us/jobs/"
+      },
+      {
+        "company_name": "Collaborate Solutions, Inc",
+        "headquarters": "Shrewsbury, MA",
+        "linkedin_url": "https://www.linkedin.com/company/collaborate-solutions-inc",
+        "careers_url": "https://www.linkedin.com/company/collaborate-solutions-inc/jobs/"
+      },
+      {
+        "company_name": "Collaborative Solutions, LLC",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/collaborative-solutions-llc",
+        "careers_url": "https://www.cognizant.com/us/en/careers"
+      },
+      {
+        "company_name": "Cologix, Inc.",
+        "headquarters": "Denver, CO",
+        "linkedin_url": "https://www.linkedin.com/company/cologix-inc",
+        "careers_url": "https://www.linkedin.com/company/cologix-inc/jobs/"
+      },
+      {
+        "company_name": "Connection",
+        "headquarters": "Merrimack, NH",
+        "linkedin_url": "https://www.linkedin.com/company/connection-it",
+        "careers_url": "https://careers.connection.com/"
+      },
+      {
+        "company_name": "Crayon",
+        "headquarters": "U.S. office in Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/crayon-group",
+        "careers_url": "https://www.crayon.com/careers/"
+      },
+      {
+        "company_name": "Crossfuze",
+        "headquarters": "Minneapolis, MN",
+        "linkedin_url": "https://www.linkedin.com/company/crossfuze",
+        "careers_url": "https://www.crossfuze.com/careers"
+      },
+      {
+        "company_name": "CTC",
+        "headquarters": "Detroit, MI",
+        "linkedin_url": "https://www.linkedin.com/company/ctcworld",
+        "careers_url": "https://www.linkedin.com/company/ctcworld/jobs/"
+      },
+      {
+        "company_name": "Customertimes",
+        "headquarters": "NY, NY",
+        "linkedin_url": "https://www.linkedin.com/company/customertimes",
+        "careers_url": "https://customertimes.com/careers/"
+      },
+      {
+        "company_name": "DataArt",
+        "headquarters": "NY, NY",
+        "linkedin_url": "https://www.linkedin.com/company/dataart",
+        "careers_url": "https://www.dataart.com/careers"
+      },
+      {
+        "company_name": "DISYS",
+        "headquarters": "McLean, VA",
+        "linkedin_url": "https://www.linkedin.com/company/disys",
+        "careers_url": "https://www.linkedin.com/company/disys/jobs/"
+      },
+      {
+        "company_name": "Diversified",
+        "headquarters": "Plano, TX",
+        "linkedin_url": "https://www.linkedin.com/company/diversified-",
+        "careers_url": "https://www.linkedin.com/company/diversified-/jobs/"
+      },
+      {
+        "company_name": "E-Solutions",
+        "headquarters": "San Jose, CA",
+        "linkedin_url": "https://www.linkedin.com/company/e-solutions-global",
+        "careers_url": "https://www.linkedin.com/company/e-solutions-global/jobs/"
+      },
+      {
+        "company_name": "Encora Inc.",
+        "headquarters": "Santa Clara, CA",
+        "linkedin_url": "https://www.linkedin.com/company/encorainc",
+        "careers_url": "https://www.linkedin.com/company/encorainc/jobs/"
+      },
+      {
+        "company_name": "Endava",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/endava",
+        "careers_url": "https://www.endava.com/careers"
+      },
+      {
+        "company_name": "Ensono",
+        "headquarters": "Downers Grove, IL",
+        "linkedin_url": "https://www.linkedin.com/company/ensono",
+        "careers_url": "https://www.ensono.com/careers/"
+      },
+      {
+        "company_name": "ePlus inc.",
+        "headquarters": "Herndon, VA",
+        "linkedin_url": "https://www.linkedin.com/company/eplus-technology",
+        "careers_url": "https://careers.eplus.com/"
+      },
+      {
+        "company_name": "Eviden",
+        "headquarters": "Irving, TX",
+        "linkedin_url": "https://www.linkedin.com/company/eviden",
+        "careers_url": "https://eviden.com/careers/"
+      },
+      {
+        "company_name": "Excelacom",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/excelacom",
+        "careers_url": "https://www.linkedin.com/company/excelacom/jobs/"
+      },
+      {
+        "company_name": "Experis",
+        "headquarters": "Milwaukee, WI",
+        "linkedin_url": "https://www.linkedin.com/company/experis",
+        "careers_url": "https://www.experis.com/en/careers"
+      },
+      {
+        "company_name": "Fujitsu",
+        "headquarters": "Richardson, TX",
+        "linkedin_url": "https://www.linkedin.com/company/fujitsu",
+        "careers_url": "https://www.fujitsu.com/us/about/careers/"
+      },
+      {
+        "company_name": "GalaxE.Solutions",
+        "headquarters": "Detroit, MI",
+        "linkedin_url": "https://www.linkedin.com/company/galaxe-solutions",
+        "careers_url": "https://www.linkedin.com/company/galaxe-solutions/jobs/"
+      },
+      {
+        "company_name": "GDT - General Datatech",
+        "headquarters": "Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/general-datatech",
+        "careers_url": "https://www.gdt.com/careers/"
+      },
+      {
+        "company_name": "GlideFast Consulting",
+        "headquarters": "Waltham, MA",
+        "linkedin_url": "https://www.linkedin.com/company/glidefast",
+        "careers_url": "https://www.glidefast.com/careers"
+      },
+      {
+        "company_name": "Globant",
+        "headquarters": "San Francisco, CA",
+        "linkedin_url": "https://www.linkedin.com/company/globant",
+        "careers_url": "https://career.globant.com/"
+      },
+      {
+        "company_name": "GuidePoint Security",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/guidepointsec",
+        "careers_url": "https://www.guidepointsecurity.com/careers/"
+      },
+      {
+        "company_name": "Hire IT People, Inc.",
+        "headquarters": "Piscataway, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/hireitpeople",
+        "careers_url": "https://www.linkedin.com/company/hireitpeople/jobs/"
+      },
+      {
+        "company_name": "Hitachi Solutions America",
+        "headquarters": "Irvine, CA",
+        "linkedin_url": "https://www.linkedin.com/company/hitachi-solutions-america",
+        "careers_url": "https://global.hitachi-solutions.com/careers/"
+      },
+      {
+        "company_name": "HITSS USA",
+        "headquarters": "Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/hitss-usa",
+        "careers_url": "https://www.linkedin.com/company/hitss-usa/jobs/"
+      },
+      {
+        "company_name": "HTEC",
+        "headquarters": "Palo Alto, CA",
+        "linkedin_url": "https://www.linkedin.com/company/htecgroup",
+        "careers_url": "https://htec.com/careers/"
+      },
+      {
+        "company_name": "IDC Technologies, Inc.",
+        "headquarters": "Milpitas, CA",
+        "linkedin_url": "https://www.linkedin.com/company/idc-technologies-inc.",
+        "careers_url": "https://www.linkedin.com/company/idc-technologies-inc./jobs/"
+      },
+      {
+        "company_name": "Improving",
+        "headquarters": "Plano, TX",
+        "linkedin_url": "https://www.linkedin.com/company/improving-enterprises",
+        "careers_url": "https://www.improving.com/careers"
+      },
+      {
+        "company_name": "Incedo Inc.",
+        "headquarters": "Florham Park, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/incedo-inc",
+        "careers_url": "https://www.linkedin.com/company/incedo-inc/jobs/"
+      },
+      {
+        "company_name": "Infocenter",
+        "headquarters": "Charlotte, NC",
+        "linkedin_url": "https://www.linkedin.com/company/infocenterio",
+        "careers_url": "https://www.linkedin.com/company/infocenterio/jobs/"
+      },
+      {
+        "company_name": "InfoVision Inc.",
+        "headquarters": "Richardson, TX",
+        "linkedin_url": "https://www.linkedin.com/company/infovision",
+        "careers_url": "https://www.linkedin.com/company/infovision/jobs/"
+      },
+      {
+        "company_name": "Innowise",
+        "headquarters": "St. Petersburg, FL",
+        "linkedin_url": "https://www.linkedin.com/company/innowise-group",
+        "careers_url": "https://innowise.com/careers/"
+      },
+      {
+        "company_name": "Insight",
+        "headquarters": "Chandler, AZ",
+        "linkedin_url": "https://www.linkedin.com/company/insight",
+        "careers_url": "https://jobs.insight.com/"
+      },
+      {
+        "company_name": "Integris",
+        "headquarters": "Cranbury Township, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/integris-it",
+        "careers_url": "https://www.linkedin.com/company/integris-it/jobs/"
+      },
+      {
+        "company_name": "Intelligroup",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/intelligroup",
+        "careers_url": "https://www.linkedin.com/company/intelligroup/jobs/"
+      },
+      {
+        "company_name": "Intone Networks Inc",
+        "headquarters": "Iselin, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/intone-networks-inc",
+        "careers_url": "https://www.linkedin.com/company/intone-networks-inc/jobs/"
+      },
+      {
+        "company_name": "ISACA Utah Chapter",
+        "headquarters": "Salt Lake City, UT",
+        "linkedin_url": "https://www.linkedin.com/company/isaca-utah-chapter",
+        "careers_url": "https://www.linkedin.com/company/isaca-utah-chapter/jobs/"
+      },
+      {
+        "company_name": "IT Labs Group",
+        "headquarters": "San Diego, CA",
+        "linkedin_url": "https://www.linkedin.com/company/itl-g",
+        "careers_url": "https://www.linkedin.com/company/itl-g/jobs/"
+      },
+      {
+        "company_name": "itD (formerly iTalent Digital)",
+        "headquarters": "Campbell, CA",
+        "linkedin_url": "https://www.linkedin.com/company/itd-tech",
+        "careers_url": "https://www.linkedin.com/company/itd-tech/jobs/"
+      },
+      {
+        "company_name": "iTech US Inc.",
+        "headquarters": "South Burlington, VT",
+        "linkedin_url": "https://www.linkedin.com/company/itech-us-inc",
+        "careers_url": "https://www.linkedin.com/company/itech-us-inc/jobs/"
+      },
+      {
+        "company_name": "iTechArt Group",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/itechart-group-by",
+        "careers_url": "https://www.linkedin.com/company/itechart-group-by/jobs/"
+      },
+      {
+        "company_name": "Itransition Group",
+        "headquarters": "Decatur, GA",
+        "linkedin_url": "https://www.linkedin.com/company/itransition",
+        "careers_url": "https://www.itransition.com/careers"
+      },
+      {
+        "company_name": "Jade Global",
+        "headquarters": "San Jose, CA",
+        "linkedin_url": "https://www.linkedin.com/company/jade-global",
+        "careers_url": "https://www.linkedin.com/company/jade-global/jobs/"
+      },
+      {
+        "company_name": "Kainos",
+        "headquarters": "Indianapolis, IN",
+        "linkedin_url": "https://www.linkedin.com/company/kainos",
+        "careers_url": "https://www.kainos.com/careers"
+      },
+      {
+        "company_name": "Lemongrass",
+        "headquarters": "U.S. location in Ewing, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/lemongrass-consulting-ltd",
+        "careers_url": "https://lemongrasscloud.com/careers/"
+      },
+      {
+        "company_name": "LeverX",
+        "headquarters": "Miami, FL",
+        "linkedin_url": "https://www.linkedin.com/company/leverxglobal",
+        "careers_url": "https://leverx.com/careers"
+      },
+      {
+        "company_name": "LogicalisUS",
+        "headquarters": "Troy, MI",
+        "linkedin_url": "https://www.linkedin.com/company/logicalisus",
+        "careers_url": "https://www.us.logicalis.com/careers"
+      },
+      {
+        "company_name": "Long View Systems",
+        "headquarters": "Denver, CO",
+        "linkedin_url": "https://www.linkedin.com/company/longviewsystems",
+        "careers_url": "https://www.longviewsystems.com/careers/"
+      },
+      {
+        "company_name": "Lorven Technologies Inc.",
+        "headquarters": "Plainsboro, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/lorventech",
+        "careers_url": "https://www.linkedin.com/company/lorventech/jobs/"
+      },
+      {
+        "company_name": "Matrix USA",
+        "headquarters": "Jersey City, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/matrixusa",
+        "careers_url": "https://www.linkedin.com/company/matrixusa/jobs/"
+      },
+      {
+        "company_name": "Minnesota IT Services",
+        "headquarters": "Saint Paul, MN",
+        "linkedin_url": "https://www.linkedin.com/company/minnesota-it-services",
+        "careers_url": "https://www.linkedin.com/company/minnesota-it-services/jobs/"
+      },
+      {
+        "company_name": "N.C. Department of Information Technology",
+        "headquarters": "Raleigh, NC",
+        "linkedin_url": "https://www.linkedin.com/company/ncdit",
+        "careers_url": "https://www.linkedin.com/company/ncdit/jobs/"
+      },
+      {
+        "company_name": "Navisite",
+        "headquarters": "Andover, MA",
+        "linkedin_url": "https://www.linkedin.com/company/navisite",
+        "careers_url": "https://www.accenture.com/us-en/careers"
+      },
+      {
+        "company_name": "Neudesic, an IBM Company",
+        "headquarters": "Irvine, CA",
+        "linkedin_url": "https://www.linkedin.com/company/neudesic-an-ibm-company",
+        "careers_url": "https://www.linkedin.com/company/neudesic-an-ibm-company/jobs/"
+      },
+      {
+        "company_name": "Neustar, Inc.",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/neustar-inc",
+        "careers_url": "https://www.linkedin.com/company/neustar-inc/jobs/"
+      },
+      {
+        "company_name": "New Horizons Nashville - Computer Learning Center",
+        "headquarters": "Nashville, TN",
+        "linkedin_url": "https://www.linkedin.com/company/newhorizonsnashville",
+        "careers_url": "https://www.linkedin.com/company/newhorizonsnashville/jobs/"
+      },
+      {
+        "company_name": "NewRocket",
+        "headquarters": "Vista, CA",
+        "linkedin_url": "https://www.linkedin.com/company/newrocket-gobeyond",
+        "careers_url": "https://www.newrocket.com/careers"
+      },
+      {
+        "company_name": "NLB Services",
+        "headquarters": "Alpharetta, GA",
+        "linkedin_url": "https://www.linkedin.com/company/nlb-services",
+        "careers_url": "https://www.linkedin.com/company/nlb-services/jobs/"
+      },
+      {
+        "company_name": "Nous Infosystems",
+        "headquarters": "Edison, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/nousinfosystems",
+        "careers_url": "https://www.linkedin.com/company/nousinfosystems/jobs/"
+      },
+      {
+        "company_name": "Onix",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/onixcloud",
+        "careers_url": "https://www.onixnet.com/careers/"
+      },
+      {
+        "company_name": "Pantheon Inc",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/pantheoninc",
+        "careers_url": "https://www.linkedin.com/company/pantheoninc/jobs/"
+      },
+      {
+        "company_name": "phData",
+        "headquarters": "Minneapolis, MN",
+        "linkedin_url": "https://www.linkedin.com/company/phdata",
+        "careers_url": "https://www.phdata.io/careers/"
+      },
+      {
+        "company_name": "Plat4mation",
+        "headquarters": "U.S. office in Waltham, MA",
+        "linkedin_url": "https://www.linkedin.com/company/plat4mation",
+        "careers_url": "https://plat4mation.com/careers/"
+      },
+      {
+        "company_name": "Presidio",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/presidio-",
+        "careers_url": "https://www.presidio.com/careers/"
+      },
+      {
+        "company_name": "Quantiphi",
+        "headquarters": "Marlborough, MA",
+        "linkedin_url": "https://www.linkedin.com/company/quantiphi",
+        "careers_url": "https://quantiphi.com/careers/"
+      },
+      {
+        "company_name": "Quisitive",
+        "headquarters": "Irving, TX",
+        "linkedin_url": "https://www.linkedin.com/company/quisitive-inc-",
+        "careers_url": "https://www.linkedin.com/company/quisitive-inc-/jobs/"
+      },
+      {
+        "company_name": "R Systems",
+        "headquarters": "El Dorado Hills, CA",
+        "linkedin_url": "https://www.linkedin.com/company/r-systems",
+        "careers_url": "https://www.linkedin.com/company/r-systems/jobs/"
+      },
+      {
+        "company_name": "Rackspace Technology",
+        "headquarters": "San Antonio, TX",
+        "linkedin_url": "https://www.linkedin.com/company/rackspace-technology",
+        "careers_url": "https://rackspace.jobs/"
+      },
+      {
+        "company_name": "Red River",
+        "headquarters": "Chantilly, VA",
+        "linkedin_url": "https://www.linkedin.com/company/red-river-technology",
+        "careers_url": "https://redriver.com/careers"
+      },
+      {
+        "company_name": "Rizing",
+        "headquarters": "Stamford, CT",
+        "linkedin_url": "https://www.linkedin.com/company/rizingllc",
+        "careers_url": "https://rizing.com/careers"
+      },
+      {
+        "company_name": "SADA, An Insight company",
+        "headquarters": "Chandler, AZ",
+        "linkedin_url": "https://www.linkedin.com/company/sada",
+        "careers_url": "https://www.linkedin.com/company/sada/jobs/"
+      },
+      {
+        "company_name": "ScienceSoft",
+        "headquarters": "McKinney, TX",
+        "linkedin_url": "https://www.linkedin.com/company/sciencesoft",
+        "careers_url": "https://www.scnsoft.com/careers"
+      },
+      {
+        "company_name": "SEIDOR",
+        "headquarters": "Houston, TX",
+        "linkedin_url": "https://www.linkedin.com/company/seidor",
+        "careers_url": "https://www.seidor.com/en-us/talent"
+      },
+      {
+        "company_name": "SHI International Corp.",
+        "headquarters": "Somerset, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/shi-international-corp-",
+        "careers_url": "https://careers-shi.icims.com/"
+      },
+      {
+        "company_name": "Softchoice",
+        "headquarters": "Chicago, IL",
+        "linkedin_url": "https://www.linkedin.com/company/softchoice",
+        "careers_url": "https://www.softchoice.com/careers"
+      },
+      {
+        "company_name": "SoftServe",
+        "headquarters": "Austin, TX",
+        "linkedin_url": "https://www.linkedin.com/company/softserve",
+        "careers_url": "https://career.softserveinc.com/"
+      },
+      {
+        "company_name": "SoftTeco",
+        "headquarters": "U.S. location in Wenham, MA",
+        "linkedin_url": "https://www.linkedin.com/company/softteco",
+        "careers_url": "https://www.linkedin.com/company/softteco/jobs/"
+      },
+      {
+        "company_name": "Softtek",
+        "headquarters": "Addison, TX",
+        "linkedin_url": "https://www.linkedin.com/company/softtek",
+        "careers_url": "https://www.softtek.com/careers"
+      },
+      {
+        "company_name": "SoftwareOne",
+        "headquarters": "Milwaukee, WI",
+        "linkedin_url": "https://www.linkedin.com/company/softwareone",
+        "careers_url": "https://www.softwareone.com/en/careers"
+      },
+      {
+        "company_name": "Sogeti",
+        "headquarters": "Dayton, OH",
+        "linkedin_url": "https://www.linkedin.com/company/sogeti",
+        "careers_url": "https://www.sogeti.com/careers/"
+      },
+      {
+        "company_name": "Sonata Software",
+        "headquarters": "Redmond, WA",
+        "linkedin_url": "https://www.linkedin.com/company/sonata-software",
+        "careers_url": "https://www.sonata-software.com/careers"
+      },
+      {
+        "company_name": "STX Next",
+        "headquarters": "U.S. office in Spring, TX",
+        "linkedin_url": "https://www.linkedin.com/company/stx-next-ai-solutions",
+        "careers_url": "https://www.linkedin.com/company/stx-next-ai-solutions/jobs/"
+      },
+      {
+        "company_name": "Tanisha Systems, Inc.",
+        "headquarters": "Boston, MA",
+        "linkedin_url": "https://www.linkedin.com/company/tanishasystems",
+        "careers_url": "https://www.linkedin.com/company/tanishasystems/jobs/"
+      },
+      {
+        "company_name": "TEKsystems",
+        "headquarters": "Hanover, MD",
+        "linkedin_url": "https://www.linkedin.com/company/teksystems",
+        "careers_url": "https://www.teksystems.com/en/careers"
+      },
+      {
+        "company_name": "The Digital Group Inc",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/thedigitalgroupinc",
+        "careers_url": "https://www.linkedin.com/company/thedigitalgroupinc/jobs/"
+      },
+      {
+        "company_name": "Themesoft Inc.",
+        "headquarters": "Coppell, TX",
+        "linkedin_url": "https://www.linkedin.com/company/themesoft-inc.",
+        "careers_url": "https://www.linkedin.com/company/themesoft-inc./jobs/"
+      },
+      {
+        "company_name": "Thirdera",
+        "headquarters": "Broomfield, CO",
+        "linkedin_url": "https://www.linkedin.com/company/thirdera",
+        "careers_url": "https://www.linkedin.com/company/thirdera/jobs/"
+      },
+      {
+        "company_name": "TopBloc",
+        "headquarters": "Chicago, IL",
+        "linkedin_url": "https://www.linkedin.com/company/topbloc",
+        "careers_url": "https://topbloc.com/careers/"
+      },
+      {
+        "company_name": "Unisys",
+        "headquarters": "Blue Bell, PA",
+        "linkedin_url": "https://www.linkedin.com/company/unisys",
+        "careers_url": "https://jobs.unisys.com/"
+      },
+      {
+        "company_name": "ValueLabs",
+        "headquarters": "Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/valuelabs",
+        "careers_url": "https://www.linkedin.com/company/valuelabs/jobs/"
+      },
+      {
+        "company_name": "Velosio",
+        "headquarters": "Atlanta, GA",
+        "linkedin_url": "https://www.linkedin.com/company/velosio",
+        "careers_url": "https://www.velosio.com/careers/"
+      },
+      {
+        "company_name": "Vention",
+        "headquarters": "NY, NY",
+        "linkedin_url": "https://www.linkedin.com/company/ventionteams",
+        "careers_url": "https://ventionteams.com/careers"
+      },
+      {
+        "company_name": "VisionIT",
+        "headquarters": "Detroit, MI",
+        "linkedin_url": "https://www.linkedin.com/company/visionit",
+        "careers_url": "https://www.linkedin.com/company/visionit/jobs/"
+      },
+      {
+        "company_name": "VRP Consulting",
+        "headquarters": "San Francisco, CA",
+        "linkedin_url": "https://www.linkedin.com/company/vrp-consulting",
+        "careers_url": "https://www.linkedin.com/company/vrp-consulting/jobs/"
+      },
+      {
+        "company_name": "World Wide Technology",
+        "headquarters": "Maryland Heights, MO",
+        "linkedin_url": "https://www.linkedin.com/company/world-wide-technology",
+        "careers_url": "https://www.wwt.com/careers"
+      },
+      {
+        "company_name": "Zones, LLC",
+        "headquarters": "Auburn, WA",
+        "linkedin_url": "https://www.linkedin.com/company/zones",
+        "careers_url": "https://www.zones.com/site/careers"
+      },
+      {
+        "company_name": "Zoom",
+        "headquarters": "San Jose, CA",
+        "linkedin_url": "https://www.linkedin.com/company/zoom",
+        "careers_url": "https://www.linkedin.com/company/zoom/jobs/"
+      },
+      {
+        "company_name": "ZSL Inc",
+        "headquarters": "Edison, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/zsl-inc",
+        "careers_url": "https://www.linkedin.com/company/zsl-inc/jobs/"
+      },
+      {
+        "company_name": "Grid Dynamics",
+        "headquarters": "San Ramon, CA",
+        "linkedin_url": "https://www.linkedin.com/company/grid-dynamics",
+        "careers_url": "https://www.griddynamics.com/careers"
+      },
+      {
+        "company_name": "Infogain",
+        "headquarters": "Los Gatos, CA",
+        "linkedin_url": "https://www.linkedin.com/company/infogain",
+        "careers_url": "https://www.infogain.com/careers/"
+      },
+      {
+        "company_name": "Iris Software Inc.",
+        "headquarters": "Edison, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/iris-software-inc.",
+        "careers_url": "https://www.irissoftware.com/careers/"
+      },
+      {
+        "company_name": "TestingXperts",
+        "headquarters": "Mechanicsburg, PA",
+        "linkedin_url": "https://www.linkedin.com/company/testingxperts",
+        "careers_url": "https://www.testingxperts.com/career/"
+      },
+      {
+        "company_name": "Impetus",
+        "headquarters": "Los Gatos, CA",
+        "linkedin_url": "https://www.linkedin.com/company/impetus",
+        "careers_url": "https://www.impetus.com/careers/"
+      },
+      {
+        "company_name": "Orion Innovation",
+        "headquarters": "Iselin, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/orioninnovation",
+        "careers_url": "https://www.linkedin.com/company/orioninnovation/jobs/"
+      },
+      {
+        "company_name": "Solvd, Inc.",
+        "headquarters": "Walnut Creek, CA",
+        "linkedin_url": "https://www.linkedin.com/company/solvdinc",
+        "careers_url": "https://solvd.com/careers/"
+      },
+      {
+        "company_name": "Egen",
+        "headquarters": "Naperville, IL",
+        "linkedin_url": "https://www.linkedin.com/company/egenai",
+        "careers_url": "https://www.linkedin.com/company/egenai/jobs/"
+      },
+      {
+        "company_name": "Svitla Systems, Inc.",
+        "headquarters": "Corte Madera, CA",
+        "linkedin_url": "https://www.linkedin.com/company/svitla-systems-inc-",
+        "careers_url": "https://www.linkedin.com/company/svitla-systems-inc-/jobs/"
+      },
+      {
+        "company_name": "10Pearls",
+        "headquarters": "Vienna, VA",
+        "linkedin_url": "https://www.linkedin.com/company/10pearls",
+        "careers_url": "https://10pearls.com/careers/"
+      },
+      {
+        "company_name": "CapTech",
+        "headquarters": "Richmond, VA",
+        "linkedin_url": "https://www.linkedin.com/company/captechconsulting",
+        "careers_url": "https://www.captechconsulting.com/careers"
+      },
+      {
+        "company_name": "Innominds",
+        "headquarters": "San Jose, CA",
+        "linkedin_url": "https://www.linkedin.com/company/innominds",
+        "careers_url": "https://www.innominds.com/careers"
+      },
+      {
+        "company_name": "TierPoint",
+        "headquarters": "St. Louis, MO",
+        "linkedin_url": "https://www.linkedin.com/company/tierpoint",
+        "careers_url": "https://www.tierpoint.com/about-us/careers/"
+      },
+      {
+        "company_name": "Flexential",
+        "headquarters": "Centennial, CO",
+        "linkedin_url": "https://www.linkedin.com/company/flexential",
+        "careers_url": "https://www.flexential.com/careers"
+      },
+      {
+        "company_name": "Core BTS",
+        "headquarters": "Indianapolis, IN",
+        "linkedin_url": "https://www.linkedin.com/company/core-bts",
+        "careers_url": "https://www.linkedin.com/company/core-bts/jobs/"
+      },
+      {
+        "company_name": "Synoptek",
+        "headquarters": "Costa Mesa, CA",
+        "linkedin_url": "https://www.linkedin.com/company/synoptek",
+        "careers_url": "https://synoptek.com/about-us/careers/"
+      },
+      {
+        "company_name": "VC3",
+        "headquarters": "Columbia, SC",
+        "linkedin_url": "https://www.linkedin.com/company/vc3",
+        "careers_url": "https://careers.vc3.com/"
+      },
+      {
+        "company_name": "DataBank",
+        "headquarters": "Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/databank",
+        "careers_url": "https://www.databank.com/about-databank/careers-at-databank/"
+      },
+      {
+        "company_name": "11:11 Systems",
+        "headquarters": "Fairfield, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/1111-systems",
+        "careers_url": "https://1111systems.com/why-1111/careers/"
+      },
+      {
+        "company_name": "Equinix",
+        "headquarters": "Redwood City, CA",
+        "linkedin_url": "https://www.linkedin.com/company/equinix",
+        "careers_url": "https://careers.equinix.com/"
+      },
+      {
+        "company_name": "CyrusOne",
+        "headquarters": "Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/cyrusone",
+        "careers_url": "https://www.cyrusone.com/company/careers"
+      },
+      {
+        "company_name": "Digital Realty",
+        "headquarters": "Austin, TX",
+        "linkedin_url": "https://www.linkedin.com/company/digitalrealty",
+        "careers_url": "https://careers.digitalrealty.com/"
+      },
+      {
+        "company_name": "QTS Data Centers",
+        "headquarters": "Sterling, VA",
+        "linkedin_url": "https://www.linkedin.com/company/qtsdatacenters",
+        "careers_url": "https://careers.qtsdatacenters.com/us/en/home"
+      },
+      {
+        "company_name": "CoreSite",
+        "headquarters": "Denver, CO",
+        "linkedin_url": "https://www.linkedin.com/company/coresite",
+        "careers_url": "https://www.coresite.com/about/careers"
+      },
+      {
+        "company_name": "Techwave",
+        "headquarters": "Houston, TX",
+        "linkedin_url": "https://www.linkedin.com/company/techwave-consulting-inc",
+        "careers_url": "https://www.linkedin.com/company/techwave-consulting-inc/jobs/"
+      },
+      {
+        "company_name": "Rimini Street",
+        "headquarters": "Las Vegas, NV",
+        "linkedin_url": "https://www.linkedin.com/company/rimini-street",
+        "careers_url": "https://www.linkedin.com/company/rimini-street/jobs/"
+      },
+      {
+        "company_name": "Argano",
+        "headquarters": "Plano, TX",
+        "linkedin_url": "https://www.linkedin.com/company/argano",
+        "careers_url": "https://argano.com/careers/"
+      },
+      {
+        "company_name": "Mythics",
+        "headquarters": "Virginia Beach, VA",
+        "linkedin_url": "https://www.linkedin.com/company/mythics",
+        "careers_url": "https://www.linkedin.com/company/mythics/jobs/"
+      },
+      {
+        "company_name": "Columbus Technologies and Services",
+        "headquarters": "El Segundo, CA",
+        "linkedin_url": "https://www.linkedin.com/company/columbususa",
+        "careers_url": "https://columbususa.com/careers/"
+      },
+      {
+        "company_name": "Beyondsoft",
+        "headquarters": "Bellevue, WA",
+        "linkedin_url": "https://www.linkedin.com/company/beyondsoft",
+        "careers_url": "https://www.linkedin.com/company/beyondsoft/jobs/"
+      },
+      {
+        "company_name": "GAVS Technologies",
+        "headquarters": "Princeton, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/gavs",
+        "careers_url": "https://www.linkedin.com/company/gavs/jobs/"
+      },
+      {
+        "company_name": "Bristlecone",
+        "headquarters": "San Jose, CA",
+        "linkedin_url": "https://www.linkedin.com/company/bristlecone",
+        "careers_url": "https://www.linkedin.com/company/bristlecone/jobs/"
+      },
+      {
+        "company_name": "iSoftStone",
+        "headquarters": "Plano, TX",
+        "linkedin_url": "https://www.linkedin.com/company/isoftstone",
+        "careers_url": "https://www.isoftstoneinc.com/careers/"
+      },
+      {
+        "company_name": "Visionet Systems Inc.",
+        "headquarters": "Cranbury, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/visionet-systems-inc-",
+        "careers_url": "https://www.linkedin.com/company/visionet-systems-inc-/jobs/"
+      },
+      {
+        "company_name": "Anblicks",
+        "headquarters": "Dallas, TX",
+        "linkedin_url": "https://www.linkedin.com/company/anblicks",
+        "careers_url": "https://www.linkedin.com/company/anblicks/jobs/"
+      },
+      {
+        "company_name": "Damco Solutions",
+        "headquarters": "Plainsboro, NJ",
+        "linkedin_url": "https://www.linkedin.com/company/damco-solutions",
+        "careers_url": "https://www.linkedin.com/company/damco-solutions/jobs/"
+      },
+      {
+        "company_name": "Intellias",
+        "headquarters": "Chicago, IL",
+        "linkedin_url": "https://www.linkedin.com/company/intellias",
+        "careers_url": "https://career.intellias.com/"
+      },
+      {
+        "company_name": "CI&T",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/ciandt",
+        "careers_url": "https://ciandt.com/us/en-us/careers"
+      },
+      {
+        "company_name": "Xebia",
+        "headquarters": "Atlanta, GA",
+        "linkedin_url": "https://www.linkedin.com/company/xebia",
+        "careers_url": "https://www.linkedin.com/company/xebia/jobs/"
+      },
+      {
+        "company_name": "Miratech",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/miratech",
+        "careers_url": "https://www.linkedin.com/company/miratech/jobs/"
+      },
+      {
+        "company_name": "BairesDev",
+        "headquarters": "San Francisco, CA",
+        "linkedin_url": "https://www.linkedin.com/company/bairesdev",
+        "careers_url": "https://www.bairesdev.com/join-us/"
+      },
+      {
+        "company_name": "Milestone Technologies, Inc.",
+        "headquarters": "Fremont, CA",
+        "linkedin_url": "https://www.linkedin.com/company/milestone-technologies",
+        "careers_url": "https://milestone.tech/careers/"
+      },
+      {
+        "company_name": "Mobiquity Inc.",
+        "headquarters": "Waltham, MA",
+        "linkedin_url": "https://www.linkedin.com/company/mobiquityinc",
+        "careers_url": "https://www.linkedin.com/company/mobiquityinc/jobs/"
+      },
+      {
+        "company_name": "Horizontal",
+        "headquarters": "St Louis Park, MN",
+        "linkedin_url": "https://www.linkedin.com/company/horizontalinc",
+        "careers_url": "https://www.linkedin.com/company/horizontalinc/jobs/"
+      },
+      {
+        "company_name": "Oracle",
+        "headquarters": "Austin, TX",
+        "linkedin_url": "https://www.linkedin.com/company/oracle/",
+        "careers_url": "https://www.oracle.com/careers/"
+      },
+      {
+        "company_name": "Amazon Web Services (AWS)",
+        "headquarters": "Seattle, WA",
+        "linkedin_url": "https://www.linkedin.com/company/amazon-web-services",
+        "careers_url": "https://www.amazon.jobs/content/en/teams/amazon-web-services"
+      },
+      {
+        "company_name": "Vantage Data Centers",
+        "headquarters": "Denver, CO",
+        "linkedin_url": "https://www.linkedin.com/company/vantage-data-centers",
+        "careers_url": "https://vantage-dc.com/company/careers/"
+      },
+      {
+        "company_name": "Compucom",
+        "headquarters": "Fort Mill, SC",
+        "linkedin_url": "https://www.linkedin.com/company/compucom",
+        "careers_url": "https://www.compucom.com/about-us/careers/"
+      },
+      {
+        "company_name": "Appen",
+        "headquarters": "Kirkland, WA",
+        "linkedin_url": "https://www.linkedin.com/company/appen",
+        "careers_url": "https://www.appen.com/careers"
+      },
+      {
+        "company_name": "REI Systems",
+        "headquarters": "Sterling, VA",
+        "linkedin_url": "https://www.linkedin.com/company/rei-systems",
+        "careers_url": "https://www.reisystems.com/rei-careers/"
+      },
+      {
+        "company_name": "Iron Bow Technologies",
+        "headquarters": "Herndon, VA",
+        "linkedin_url": "https://www.linkedin.com/company/iron-bow-technologies",
+        "careers_url": "https://ironbow.com/careers"
+      },
+      {
+        "company_name": "Agile Defense",
+        "headquarters": "McLean, VA",
+        "linkedin_url": "https://www.linkedin.com/company/agiledefense",
+        "careers_url": "https://agiledefense.com/careers/"
+      },
+      {
+        "company_name": "TekSynap",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/teksynap",
+        "careers_url": "https://teksynap.com/careers/"
+      },
+      {
+        "company_name": "Koniag Government Services",
+        "headquarters": "Chantilly, VA",
+        "linkedin_url": "https://www.linkedin.com/company/koniag-government-services",
+        "careers_url": "https://www.koniag-gs.com/careers/"
+      },
+      {
+        "company_name": "Steampunk, Inc.",
+        "headquarters": "McLean, VA",
+        "linkedin_url": "https://www.linkedin.com/company/steampunk-inc",
+        "careers_url": "https://careers-steampunk.icims.com/jobs/intro"
+      },
+      {
+        "company_name": "Accenture Federal Services",
+        "headquarters": "Arlington, VA",
+        "linkedin_url": "https://www.linkedin.com/company/accenturefederalservices",
+        "careers_url": "https://www.linkedin.com/company/accenturefederalservices/jobs/"
+      },
+      {
+        "company_name": "Amyx, Inc.",
+        "headquarters": "Reston, VA",
+        "linkedin_url": "https://www.linkedin.com/company/amyx-inc-",
+        "careers_url": "https://www.linkedin.com/company/amyx-inc-/jobs/"
+      },
+      {
+        "company_name": "ASM Research",
+        "headquarters": "Fairfax, VA",
+        "linkedin_url": "https://www.linkedin.com/company/asm-research",
+        "careers_url": "https://www.asmr.com/careers/"
+      },
+      {
+        "company_name": "Abacus",
+        "headquarters": "New York, NY",
+        "linkedin_url": "https://www.linkedin.com/company/abacustechnology",
+        "careers_url": "https://abacustechnology.com/about/careers/"
+      }
+    ],
+    "VENDOR": []
+  }
+}

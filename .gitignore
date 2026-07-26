@@ -1,5 +1,6 @@
 # Local configuration and secrets
 .env
+data/base-resumes/
 .env.*
 !.env.example
 
@@ -29,7 +30,7 @@ frontend/dist/
 .vite/
 
 # Local application data
-data/
+/data/
 generated-resumes/
 uploads/
 *.db
@@ -53,4 +54,3 @@ temp/
 .DS_Store
 Thumbs.db
 Desktop.ini
-
