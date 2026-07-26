@@ -3,7 +3,7 @@
 from datetime import date
 from threading import RLock
 
-from app.schemas import UserSettingsPayload, UserSettingsResponse
+from app.schemas import CompanyType, UserSettingsPayload, UserSettingsResponse
 
 
 class InMemorySettingsRepository:
@@ -16,8 +16,8 @@ class InMemorySettingsRepository:
     def __init__(self) -> None:
         self._lock = RLock()
         self._settings = UserSettingsPayload(
-            base_resume_path="data/Mohan_Resume.docx",
-            company_file_path="data/target-companies.xlsx",
+            base_resume_path="",
+            company_type=CompanyType.IMPLEMENTATION,
             output_directory="generated-resumes",
             start_date=date(2026, 7, 25),
             target_roles=[

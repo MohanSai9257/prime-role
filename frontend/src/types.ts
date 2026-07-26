@@ -1,5 +1,13 @@
 export type Sponsorship = "Confirmed" | "Unclear" | "No";
 
+export type CompanyType = "DIRECT_CLIENT" | "IMPLEMENTATION" | "VENDOR";
+
+export type CompanySummary = {
+  company_type: CompanyType;
+  label: string;
+  company_count: number;
+};
+
 export type Job = {
   id: string;
   company_name: string;
@@ -13,10 +21,16 @@ export type Job = {
 
 export type WorkspaceSettings = {
   base_resume_path: string;
-  company_file_path: string;
+  company_type: CompanyType;
   output_directory: string;
   start_date: string;
   target_roles: string[];
+};
+
+export type BaseResumeUpload = {
+  original_filename: string;
+  stored_path: string;
+  size_bytes: number;
 };
 
 export type SearchRun = {

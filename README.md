@@ -2,7 +2,7 @@
 
 Prime Role is a local-first job discovery and resume-tailoring application. It uses a React/Vite/TypeScript frontend and a Python 3.13 FastAPI backend in one repository. Supabase PostgreSQL can store companies, discovered jobs, search runs, and application history.
 
-The current implementation is the **first working slice**. Its demo endpoints and sample job data prove the frontend/backend integration; they are not yet the production collectors, ATS engine, sponsorship classifier, or resume-tailoring workflow.
+The current implementation is the **first working slice**. It includes email-only Supabase sign-in and validated local DOCX base-resume uploads. Its demo job endpoints prove the frontend/backend integration; they are not yet the production collectors, ATS engine, sponsorship classifier, or resume-tailoring workflow.
 
 ## Technology
 
@@ -72,7 +72,7 @@ npm --prefix frontend install
 cp .env.example .env
 ```
 
-Add Supabase and other private credentials to `.env`. Never commit that file. The demo slice can run with blank Supabase values.
+Add the Supabase URL and publishable key to `.env`. Never commit that file. Authentication requires these values.
 
 ### 3. Start development
 
@@ -118,7 +118,7 @@ npm --prefix frontend install
 Copy-Item .env.example .env
 ```
 
-Add Supabase and other private credentials to `.env`. Never commit that file. The demo slice can run with blank Supabase values.
+Add the Supabase URL and publishable key to `.env`. Never commit that file. Authentication requires these values.
 
 ### 3. Start development
 
@@ -177,14 +177,37 @@ Create a Supabase project and copy `.env.example` to `.env`. Configure:
 
 - `SUPABASE_URL`
 - `SUPABASE_PUBLISHABLE_KEY`
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
 - `DATABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` only if a server-side administrative operation requires it
 
-The browser must never receive the database password or service-role key. React calls FastAPI, and FastAPI performs privileged database and automation work.
+The Vite variables intentionally expose only the browser-safe project URL and publishable key. The browser must never receive the database password or service-role key. React calls FastAPI, and FastAPI performs privileged database and automation work.
+
+Supabase sends a magic link with its default passwordless email template. If a
+six-digit code is added to that template later, the same sign-in page can also
+verify the code.
+
+## Local base resume
+
+Upload the base resume from **Today's workspace** after signing in. The current
+slice accepts a valid `.docx` file up to 10 MB and stores it under the ignored
+`data/base-resumes` directory. The original upload is not modified, and resume
+contents are not stored in Supabase.
+
+## Built-in company catalog
+
+The company list is version-controlled at `backend/app/data/companies.json`; users do not upload a company spreadsheet. The catalog was generated from `Companies-List.xlsx` and preserves its three categories:
+
+- `IMPLEMENTATION`: 230 companies
+- `DIRECT_CLIENT`: 0 companies in the supplied workbook
+- `VENDOR`: 0 companies in the supplied workbook
+
+The Type selector uses these categories and the backend reports the real configured count for the selected type. Empty categories remain selectable, but a search over an empty category reports zero companies until a future workbook supplies those rows.
 
 ## Planned MVP flow
 
-1. Upload an Excel sheet containing approximately 250 companies.
+1. Select a built-in company type: Direct Client, Implementation, or Vendor.
 2. Select a base resume, output folder, and search-from date.
 3. Collect new public jobs without repeating previously seen job IDs or canonical URLs.
 4. Show company name, job title, job URL, ATS score, and sponsorship status (`Confirmed`, `Unclear`, or `No`).

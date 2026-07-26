@@ -1,6 +1,7 @@
 """Pydantic request and response contracts used by the API."""
 
 from datetime import date
+from enum import Enum
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
@@ -21,6 +22,36 @@ class HealthResponse(ApiModel):
     database_configured: bool
 
 
+class CompanyType(str, Enum):
+    """Supported groups from the built-in company catalog."""
+
+    DIRECT_CLIENT = "DIRECT_CLIENT"
+    IMPLEMENTATION = "IMPLEMENTATION"
+    VENDOR = "VENDOR"
+
+    @property
+    def label(self) -> str:
+        return {
+            CompanyType.DIRECT_CLIENT: "Direct Client",
+            CompanyType.IMPLEMENTATION: "Implementation",
+            CompanyType.VENDOR: "Vendor",
+        }[self]
+
+
+class CompanyResponse(ApiModel):
+    company_name: str = Field(min_length=1)
+    company_type: CompanyType
+    headquarters: str = Field(min_length=1)
+    linkedin_url: HttpUrl
+    careers_url: HttpUrl
+
+
+class CompanySummaryResponse(ApiModel):
+    company_type: CompanyType
+    label: str
+    company_count: int = Field(ge=0)
+
+
 class JobResponse(ApiModel):
     id: str
     company_name: str
@@ -35,14 +66,13 @@ class JobResponse(ApiModel):
 
 class UserSettingsPayload(ApiModel):
     base_resume_path: str = ""
-    company_file_path: str = ""
+    company_type: CompanyType = CompanyType.IMPLEMENTATION
     output_directory: str = ""
     start_date: date = Field(default_factory=date.today)
     target_roles: list[str] = Field(default_factory=list)
 
     @field_validator(
         "base_resume_path",
-        "company_file_path",
         "output_directory",
         mode="before",
     )
@@ -66,17 +96,24 @@ class UserSettingsResponse(UserSettingsPayload):
     persistence: Literal["in_memory_demo"] = "in_memory_demo"
 
 
+class BaseResumeUploadResponse(ApiModel):
+    original_filename: str
+    stored_path: str
+    size_bytes: int = Field(gt=0)
+
+
 class SearchRunRequest(ApiModel):
     start_date: date | None = None
-    company_file_path: str | None = None
+    company_type: CompanyType | None = None
     target_roles: list[str] = Field(default_factory=list)
 
 
 class SearchRunResponse(ApiModel):
     id: str
     status: Literal["completed"] = "completed"
-    companies_checked: Literal[250] = 250
-    new_jobs: Literal[3] = 3
+    company_type: CompanyType
+    companies_checked: int = Field(ge=0)
+    new_jobs: int = Field(ge=0)
     duplicates_skipped: int = Field(ge=0)
     is_demo: Literal[True] = True
     message: str
