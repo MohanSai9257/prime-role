@@ -1,6 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
+import { useAuth } from "./auth/AuthProvider";
 import type {
+  CompanySummary,
+  CompanyType,
   Job,
   Sponsorship,
   TailorResult,
@@ -8,12 +11,21 @@ import type {
 } from "./types";
 
 const defaultSettings: WorkspaceSettings = {
-  base_resume_path: "data/Mohan_Resume.docx",
-  company_file_path: "data/target-companies.xlsx",
+  base_resume_path: "",
+  company_type: "IMPLEMENTATION",
   output_directory: "generated-resumes",
   start_date: "2026-07-25",
   target_roles: ["Software Engineer", "DevOps", "Platform Engineer"]
 };
+
+const companyTypeOptions: Array<{
+  value: CompanyType;
+  label: string;
+}> = [
+  { value: "DIRECT_CLIENT", label: "DIRECT CLIENT" },
+  { value: "IMPLEMENTATION", label: "IMPLEMENTATION" },
+  { value: "VENDOR", label: "VENDOR" }
+];
 
 const companyColors = ["#635bff", "#0b3d91", "#632ca6", "#007a5a"];
 
@@ -44,7 +56,10 @@ function pathName(path: string) {
 }
 
 export default function App() {
+  const { session, signOut } = useAuth();
+  const uploadInput = useRef<HTMLInputElement>(null);
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [companySummary, setCompanySummary] = useState<CompanySummary[]>([]);
   const [settings, setSettings] =
     useState<WorkspaceSettings>(defaultSettings);
   const [draft, setDraft] = useState<WorkspaceSettings>(defaultSettings);
@@ -57,6 +72,7 @@ export default function App() {
   const [tailorResult, setTailorResult] = useState<TailorResult | null>(null);
   const [tailoringId, setTailoringId] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+  const [isUploadingResume, setIsUploadingResume] = useState(false);
   const [connection, setConnection] = useState<
     "connecting" | "online" | "offline"
   >("connecting");
@@ -66,13 +82,15 @@ export default function App() {
     const load = async () => {
       try {
         await api.health();
-        const [jobData, savedSettings] = await Promise.all([
+        const [jobData, savedSettings, summary] = await Promise.all([
           api.jobs(),
-          api.settings()
+          api.settings(),
+          api.companySummary()
         ]);
         setJobs(jobData);
         setSettings(savedSettings);
         setDraft(savedSettings);
+        setCompanySummary(summary);
         setConnection("online");
       } catch {
         setConnection("offline");
@@ -88,9 +106,18 @@ export default function App() {
     return () => window.clearTimeout(timeout);
   }, [notice]);
 
+  const selectedCompanySummary = useMemo(
+    () =>
+      companySummary.find(
+        (summary) => summary.company_type === settings.company_type
+      ),
+    [companySummary, settings.company_type]
+  );
+
   const visibleJobs = useMemo(
     () =>
       jobs.filter((job) => {
+        if (selectedCompanySummary?.company_count === 0) return false;
         const matchesText = `${job.company_name} ${job.job_title}`
           .toLowerCase()
           .includes(search.toLowerCase());
@@ -99,7 +126,7 @@ export default function App() {
           job.sponsorship === sponsorship;
         return matchesText && matchesSponsorship;
       }),
-    [jobs, search, sponsorship]
+    [jobs, search, selectedCompanySummary, sponsorship]
   );
 
   const openSettings = () => {
@@ -118,10 +145,29 @@ export default function App() {
     }
   };
 
+  const selectCompanyType = async (companyType: CompanyType) => {
+    const nextSettings = { ...settings, company_type: companyType };
+    setSettings(nextSettings);
+    setDraft((current) => ({ ...current, company_type: companyType }));
+
+    try {
+      const saved = await api.saveSettings(nextSettings);
+      setSettings(saved);
+      setDraft((current) => ({
+        ...current,
+        company_type: saved.company_type
+      }));
+    } catch {
+      setNotice(
+        "Type selected for this search, but the setting could not be saved."
+      );
+    }
+  };
+
   const runSearch = async () => {
     setIsSearching(true);
     try {
-      const run = await api.startSearch();
+      const run = await api.startSearch(settings.company_type);
       const label = run.is_demo ? "Demo search completed" : "Search completed";
       setNotice(
         `${label}: ${run.companies_checked} companies, ${run.new_jobs} new jobs`
@@ -143,6 +189,37 @@ export default function App() {
       setTailoringId(null);
     }
   };
+
+  const uploadBaseResume = async (file: File | undefined) => {
+    if (!file) return;
+
+    setIsUploadingResume(true);
+    try {
+      const uploaded = await api.uploadBaseResume(file);
+      const nextSettings = {
+        ...settings,
+        base_resume_path: uploaded.stored_path
+      };
+      setSettings(nextSettings);
+      setDraft((current) => ({
+        ...current,
+        base_resume_path: uploaded.stored_path
+      }));
+      setNotice(`${uploaded.original_filename} uploaded as the base resume`);
+    } catch (reason) {
+      setNotice(
+        reason instanceof Error
+          ? reason.message
+          : "Could not upload the base resume."
+      );
+    } finally {
+      setIsUploadingResume(false);
+      if (uploadInput.current) uploadInput.current.value = "";
+    }
+  };
+
+  const userEmail = session?.user.email ?? "Signed-in user";
+  const userInitials = userEmail.slice(0, 2).toUpperCase();
 
   return (
     <main className="app-shell">
@@ -195,13 +272,18 @@ export default function App() {
         </div>
 
         <div className="profile">
-          <div className="avatar">MR</div>
+          <div className="avatar">{userInitials}</div>
           <div>
-            <strong>Mohan Reddy</strong>
-            <span>Job search workspace</span>
+            <strong>{userEmail}</strong>
+            <span>Signed in with Supabase</span>
           </div>
-          <button aria-label="Profile menu" type="button">
-            •••
+          <button
+            aria-label="Sign out"
+            onClick={() => void signOut()}
+            title="Sign out"
+            type="button"
+          >
+            ↪
           </button>
         </div>
       </aside>
@@ -246,8 +328,8 @@ export default function App() {
                 all in one place.
               </h1>
               <p className="hero-copy">
-                Find new roles across your company list, compare your match and
-                create a truthful tailored resume when you are ready.
+                Find new roles across the selected company type, compare your
+                match and create a truthful tailored resume when you are ready.
               </p>
             </div>
             <button
@@ -277,20 +359,64 @@ export default function App() {
             </div>
 
             <div className="setup-grid">
-              <div className="setup-item">
+              <div className="setup-item resume-setup-item">
                 <span className="setup-icon green">▱</span>
                 <div>
                   <label>Base resume</label>
-                  <strong>{pathName(settings.base_resume_path)}</strong>
-                  <span className="protected">● Protected original</span>
+                  <strong>
+                    {settings.base_resume_path
+                      ? pathName(settings.base_resume_path)
+                      : "No resume uploaded"}
+                  </strong>
+                  <button
+                    className="resume-upload-button"
+                    disabled={isUploadingResume || connection !== "online"}
+                    onClick={() => uploadInput.current?.click()}
+                    type="button"
+                  >
+                    {isUploadingResume
+                      ? "Uploading…"
+                      : settings.base_resume_path
+                        ? "Replace base resume"
+                        : "Upload base resume"}
+                  </button>
+                  <input
+                    accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    className="visually-hidden"
+                    onChange={(event) =>
+                      void uploadBaseResume(event.target.files?.[0])
+                    }
+                    ref={uploadInput}
+                    type="file"
+                  />
+                  <span className="protected">
+                    ● Protected original · DOCX up to 10 MB
+                  </span>
                 </div>
               </div>
               <div className="setup-item">
                 <span className="setup-icon blue">▦</span>
                 <div>
-                  <label>Company list</label>
-                  <strong>{pathName(settings.company_file_path)}</strong>
-                  <span>250 companies configured</span>
+                  <label htmlFor="workspace-company-type">Type</label>
+                  <select
+                    className="setup-select"
+                    id="workspace-company-type"
+                    onChange={(event) =>
+                      void selectCompanyType(event.target.value as CompanyType)
+                    }
+                    value={settings.company_type}
+                  >
+                    {companyTypeOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  <span>
+                    {selectedCompanySummary
+                      ? `${selectedCompanySummary.company_count} companies configured`
+                      : "Company count unavailable"}
+                  </span>
                 </div>
               </div>
               <div className="setup-item">
@@ -399,8 +525,15 @@ export default function App() {
                   </div>
                   <button
                     className="tailor-button"
-                    disabled={tailoringId !== null}
+                    disabled={
+                      tailoringId !== null || !settings.base_resume_path
+                    }
                     onClick={() => void tailorResume(job)}
+                    title={
+                      settings.base_resume_path
+                        ? "Tailor resume"
+                        : "Upload a base resume first"
+                    }
                     type="button"
                   >
                     {tailoringId === job.id ? "Tailoring…" : "Tailor resume"}
@@ -458,30 +591,39 @@ export default function App() {
             </div>
 
             <div className="form-grid">
+              <div className="settings-resume-readonly">
+                <span>Base resume</span>
+                <strong>
+                  {draft.base_resume_path
+                    ? pathName(draft.base_resume_path)
+                    : "No resume uploaded"}
+                </strong>
+                <small>
+                  Upload or replace it from Today&apos;s workspace. The
+                  original file is never overwritten.
+                </small>
+              </div>
               <label>
-                Base resume path
-                <input
+                Company type
+                <select
+                  aria-label="Company type"
                   onChange={(event) =>
                     setDraft({
                       ...draft,
-                      base_resume_path: event.target.value
+                      company_type: event.target.value as CompanyType
                     })
                   }
-                  value={draft.base_resume_path}
-                />
-                <small>The original file will never be overwritten.</small>
-              </label>
-              <label>
-                Company spreadsheet
-                <input
-                  onChange={(event) =>
-                    setDraft({
-                      ...draft,
-                      company_file_path: event.target.value
-                    })
-                  }
-                  value={draft.company_file_path}
-                />
+                  value={draft.company_type}
+                >
+                  {companyTypeOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <small>
+                  Companies are loaded from Prime Role&apos;s built-in catalog.
+                </small>
               </label>
               <label>
                 Find jobs posted since
