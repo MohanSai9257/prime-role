@@ -313,7 +313,7 @@ export function friendlyAuthError(error, context = "auth") {
     message.includes("invalid token") ||
     message.includes("expired")
   ) {
-    return "That verification code is invalid or expired. Request a new code and try again.";
+    return "Invalid or expired verification code.";
   }
 
   if (code === "weak_password" || message.includes("weak password")) {
