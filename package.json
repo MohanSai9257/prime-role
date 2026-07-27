@@ -1,0 +1,23 @@
+{
+  "name": "prime-role",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && wrangler dev --config wrangler.jsonc",
+    "deploy": "npm run build && wrangler deploy --config wrangler.jsonc",
+    "deploy:cloudflare": "wrangler deploy --config wrangler.jsonc",
+    "test": "node --test test/*.test.js",
+    "verify": "npm test && npm run build && wrangler deploy --config wrangler.jsonc --dry-run --outdir .wrangler-build"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.110.8"
+  },
+  "devDependencies": {
+    "wrangler": "4.114.0"
+  }
+}

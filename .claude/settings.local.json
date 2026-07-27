@@ -1,0 +1,11 @@
+{
+    "env": {
+        "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+        "ANTHROPIC_AUTH_TOKEN": "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",
+        "ANTHROPIC_API_KEY": "",
+        "ANTHROPIC_MODEL": "cohere/north-mini-code:free",
+        "ANTHROPIC_DEFAULT_HAIKU_MODEL": "cohere/north-mini-code:free",
+        "ANTHROPIC_DEFAULT_SONNET_MODEL": "cohere/north-mini-code:free",
+        "ANTHROPIC_DEFAULT_OPUS_MODEL": "cohere/north-mini-code:free"
+    }
+}
