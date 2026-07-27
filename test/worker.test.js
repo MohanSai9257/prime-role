@@ -62,6 +62,16 @@ test("health identifies the JavaScript Worker runtime", async () => {
   });
 });
 
+test("public config exposes only the Supabase publishable client settings", async () => {
+  const response = await request("/api/public-config");
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), {
+    supabase_url: "https://trbqbwfvgvhokllpcmkx.supabase.co",
+    supabase_publishable_key:
+      "sb_publishable_g4nymFXeixsMFdqZm_Hsvw_SzoNde-H"
+  });
+});
+
 test("company catalog preserves all spreadsheet categories and counts", async () => {
   const response = await request("/api/companies/summary");
   assert.equal(response.status, 200);

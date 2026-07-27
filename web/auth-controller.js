@@ -6,9 +6,11 @@ import {
   friendlyAuthError,
   isAuthRoute,
   isProtectedPath,
+  isOtpCodeError,
   isTemporaryEmailSession,
   isValidEmail,
   normalizeEmail,
+  otpCooldownSeconds,
   otpDigits,
   recoverySessionMatches,
   routeDecision,
@@ -170,12 +172,13 @@ export function createAuthController({
     initializationRetryCount: 0,
     initializing: true,
     lastAuthEvent: null,
-    processingAccountConfirmation: false,
+    processingSignupVerification: false,
     queuedAuthEvent: null,
     rejectCallbackSessions: Boolean(initialCallback.hasCredentials),
     recoveryActive: false,
     recoverySession: null,
     resetTimer: null,
+    resendPending: false,
     resendTimer: null,
     session: null,
     sessionInvalidationEpoch: 0,
@@ -269,10 +272,12 @@ export function createAuthController({
 
   function updateResendButton() {
     const pending = pendingSignup();
-    const remaining = Math.max(
-      0,
-      Math.ceil(((pending?.resendAt || 0) - Date.now()) / 1000)
-    );
+    if (state.resendPending) {
+      elements["resend-otp"].disabled = true;
+      elements["resend-otp"].textContent = "Sending…";
+      return;
+    }
+    const remaining = otpCooldownSeconds(pending?.resendAt);
     elements["resend-otp"].disabled = remaining > 0;
     elements["resend-otp"].textContent =
       remaining > 0 ? `Resend in ${remaining}s` : "Resend OTP";
@@ -594,10 +599,10 @@ export function createAuthController({
     expectedSession,
     isStillCurrent = () => true
   ) {
-    if (state.processingAccountConfirmation) return;
+    if (state.processingSignupVerification) return;
     const completionGeneration = state.authEventGeneration;
     const completionInvalidationEpoch = state.sessionInvalidationEpoch;
-    state.processingAccountConfirmation = true;
+    state.processingSignupVerification = true;
     state.transition = "signup-complete";
     try {
       if (
@@ -629,7 +634,7 @@ export function createAuthController({
       return true;
     } finally {
       state.transition = null;
-      state.processingAccountConfirmation = false;
+      state.processingSignupVerification = false;
     }
   }
 
@@ -696,14 +701,10 @@ export function createAuthController({
       }
 
       const pending = pendingSignup();
-      const isSignupConfirmation =
-        (hasTrustedCallbackType("signup") &&
-          isTemporaryEmailSession(session) &&
-          (!pending?.email ||
-            signupSessionMatches(session, pending.email))) ||
-        (pending?.completing &&
-          signupSessionMatches(session, pending.email));
-      if (isSignupConfirmation) {
+      const isSignupOtpCompletion =
+        pending?.completing &&
+        signupSessionMatches(session, pending.email);
+      if (isSignupOtpCompletion) {
         if (!isCurrentEvent()) return;
         await finalizeAccountCreation(
           pending?.email || session?.user?.email || "",
@@ -859,13 +860,9 @@ export function createAuthController({
       (hasTrustedCallbackType("recovery") &&
         isTemporaryEmailSession(restoredSession)) ||
       recoverySessionMatches(restoredSession, recovery?.sessionId);
-    const isSignupCallback =
-      (hasTrustedCallbackType("signup") &&
-        isTemporaryEmailSession(restoredSession) &&
-        (!pending?.email ||
-          signupSessionMatches(restoredSession, pending.email))) ||
-      (pending?.completing &&
-        signupSessionMatches(restoredSession, pending.email));
+    const isSignupOtpCompletion =
+      pending?.completing &&
+      signupSessionMatches(restoredSession, pending.email);
     const isPasswordlessCallback =
       hasTrustedCallbackType("email", "magiclink") &&
       isTemporaryEmailSession(restoredSession);
@@ -915,18 +912,10 @@ export function createAuthController({
           elements["forgot-password-error"],
           "This password-reset link is invalid or expired. Request a new one."
         );
-      } else if (pending?.email) {
-        await navigate(AUTH_ROUTES.verifyOtp, { replace: true });
-        showMessage(
-          elements["verify-otp-error"],
-          "That verification link is invalid or expired. Request a new verification email."
-        );
       } else {
-        await navigate(AUTH_ROUTES.signup, { replace: true });
-        showMessage(
-          elements["signup-error"],
-          "That verification link is invalid or expired. Start sign-up again."
-        );
+        state.signinNotice =
+          "This authentication request is invalid or expired. Sign in again.";
+        await navigate(AUTH_ROUTES.signin, { replace: true });
       }
       return;
     }
@@ -941,7 +930,7 @@ export function createAuthController({
       return;
     }
 
-    if (restoredSession && isSignupCallback) {
+    if (restoredSession && isSignupOtpCompletion) {
       if (!restorationIsCurrent()) {
         await restartInitialization();
         return;
@@ -1150,8 +1139,7 @@ export function createAuthController({
           data: {
             first_name: values.firstName.trim(),
             last_name: values.lastName.trim()
-          },
-          emailRedirectTo: `${window.location.origin}${AUTH_ROUTES.accountCreated}`
+          }
         }
       });
       if (error) throw error;
@@ -1227,6 +1215,7 @@ export function createAuthController({
   elements["verify-otp-form"].addEventListener("submit", async (event) => {
     event.preventDefault();
     clearMessage(elements["verify-otp-error"]);
+    clearMessage(elements["verify-otp-notice"]);
     const pending = pendingSignup();
     if (!pending?.email) {
       await navigate(AUTH_ROUTES.signup, { replace: true });
@@ -1253,7 +1242,7 @@ export function createAuthController({
       const { data, error } = await supabaseClient.auth.verifyOtp({
         email: pending.email,
         token,
-        type: "signup"
+        type: "email"
       });
       if (error) throw error;
       if (!data.session) throw new Error("Verification did not create a session");
@@ -1304,6 +1293,12 @@ export function createAuthController({
         elements["verify-otp-error"],
         friendlyAuthError(error, "verify")
       );
+      if (isOtpCodeError(error)) {
+        otpInputsList.forEach((input) => {
+          input.value = "";
+        });
+        otpInputsList[0]?.focus();
+      }
     } finally {
       if (state.transition === "signup-verification") {
         state.transition = null;
@@ -1319,38 +1314,38 @@ export function createAuthController({
 
   elements["resend-otp"].addEventListener("click", async () => {
     clearMessage(elements["verify-otp-error"]);
+    clearMessage(elements["verify-otp-notice"]);
     const pending = pendingSignup();
     if (!pending?.email) {
       await navigate(AUTH_ROUTES.signup, { replace: true });
       return;
     }
-    if ((pending.resendAt || 0) > Date.now()) return;
+    if (state.resendPending || (pending.resendAt || 0) > Date.now()) return;
 
     const operationGeneration = state.authEventGeneration;
-    const resendAt = Date.now() + OTP_RESEND_COOLDOWN_MS;
-    writeRecord(PENDING_SIGNUP_KEY, {
-      ...pending,
-      completing: false,
-      resendAt
-    });
-    elements["resend-otp"].disabled = true;
-    elements["resend-otp"].textContent = "Sending…";
+    state.resendPending = true;
+    updateResendButton();
     try {
       const { error } = await supabaseClient.auth.resend({
         email: pending.email,
-        options: {
-          emailRedirectTo: `${window.location.origin}${AUTH_ROUTES.accountCreated}`
-        },
         type: "signup"
       });
       if (error) throw error;
       if (operationGeneration !== state.authEventGeneration) return;
+      const resendAt = Date.now() + OTP_RESEND_COOLDOWN_MS;
       writeRecord(PENDING_SIGNUP_KEY, {
         ...pending,
         completing: false,
         resendAt
       });
-      showToast("A new verification email was sent.");
+      otpInputsList.forEach((input) => {
+        input.value = "";
+      });
+      showMessage(
+        elements["verify-otp-notice"],
+        "A new six-digit verification code was sent. Check your email."
+      );
+      otpInputsList[0]?.focus();
     } catch (error) {
       if (operationGeneration !== state.authEventGeneration) return;
       showMessage(
@@ -1358,6 +1353,7 @@ export function createAuthController({
         friendlyAuthError(error, "verify")
       );
     } finally {
+      state.resendPending = false;
       if (operationGeneration === state.authEventGeneration) {
         updateResendButton();
       }
@@ -1550,6 +1546,8 @@ export function createAuthController({
 
   otpInputsList.forEach((input, index) => {
     input.addEventListener("input", (event) => {
+      clearMessage(elements["verify-otp-error"]);
+      clearMessage(elements["verify-otp-notice"]);
       const digits = otpDigits(event.target.value);
       event.target.value = digits[0] || "";
       if (digits.length > 1) {
@@ -1588,6 +1586,8 @@ export function createAuthController({
       const digits = otpDigits(event.clipboardData?.getData("text"));
       if (!digits.length) return;
       event.preventDefault();
+      clearMessage(elements["verify-otp-error"]);
+      clearMessage(elements["verify-otp-notice"]);
       otpInputsList.forEach((otpInput, otpIndex) => {
         otpInput.value = digits[otpIndex] || "";
       });

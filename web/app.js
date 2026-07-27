@@ -33,10 +33,9 @@ const authCallbackCredentialKeys = [
   "refresh_token",
   "token_hash"
 ];
-const callbackPathAllowed = [
-  "/account-created",
-  "/update-password"
-].includes(window.location.pathname.replace(/\/+$/, "") || "/");
+const callbackPathAllowed =
+  (window.location.pathname.replace(/\/+$/, "") || "/") ===
+  "/update-password";
 const detectedCallbackCredentials = authCallbackCredentialKeys.some(
   (key) =>
     initialHashParameters.has(key) || initialSearchParameters.has(key)

@@ -28,7 +28,7 @@ npm clean-install
 npm run dev
 ```
 
-Wrangler prints the local URL, normally `http://localhost:8787`.
+Wrangler starts the local application at `http://localhost:8788`.
 
 ## Test and verify
 
@@ -130,23 +130,20 @@ In the `prime-role-dev` Supabase project:
 3. Set the minimum password length to at least 8.
 4. Set the email OTP expiry to 3600 seconds or less.
 5. Enable leaked-password protection if the Supabase plan supports it.
-6. Set the production Site URL and allow these redirect destinations:
-   - `http://localhost:8787/account-created`
-   - `http://localhost:8787/update-password`
-   - `https://YOUR-CLOUDFLARE-HOST/account-created`
+6. Set the production Site URL and allow these password-recovery redirect
+   destinations:
+   - `http://localhost:8788/update-password`
    - `https://YOUR-CLOUDFLARE-HOST/update-password`
-7. Configure custom SMTP for production.
-8. In the **Confirm signup** email template, display the six-digit token with
-   `{{ .Token }}`. Keep the password-recovery template's secure confirmation
-   link.
+7. Follow [SUPABASE_OTP_SETUP.md](SUPABASE_OTP_SETUP.md): configure custom SMTP
+   first, then change the **Confirm signup** template to display `{{ .Token }}`
+   without `{{ .ConfirmationURL }}`. Keep the password-recovery template's
+   secure recovery link.
 
 The project was created after June 3, 2026. New Free projects using Supabase's
 default email provider cannot customize auth templates, so custom SMTP (or a
 paid Supabase plan) is required before the email can contain the requested
-six-digit code. Until that is configured, Supabase sends its default
-confirmation link. Prime Role safely supports that link too: confirmation
-shows **Account created**, signs the temporary verification session out, and
-still requires an explicit password sign in.
+six-digit code. Prime Role signup is OTP-only and does not accept a signup
+confirmation link as a substitute for the code.
 
 No additional application secret or environment variable is required for this
 browser-based Supabase flow. Never add a Supabase secret/service-role key to
@@ -154,15 +151,15 @@ browser-based Supabase flow. Never add a Supabase secret/service-role key to
 
 ### Local authentication test
 
-1. Run `npm run dev` and open `http://localhost:8787/signup`.
-2. Create an account and confirm that `/verify-otp` opens.
-3. Enter the six-digit code, or use the default confirmation link while custom
-   SMTP is not configured.
-4. Confirm that `/account-created` appears and the workspace remains locked.
-5. Select **Go to Sign in**, enter the email/password, and confirm that
+1. Complete [SUPABASE_OTP_SETUP.md](SUPABASE_OTP_SETUP.md).
+2. Run `npm run dev` and open `http://localhost:8788/signup`.
+3. Create an account and confirm that `/verify-otp` opens.
+4. Enter the six-digit code from the Confirm Signup email.
+5. Confirm that `/account-created` appears and the workspace remains locked.
+6. Select **Go to Sign in**, enter the email/password, and confirm that
    `/dashboard` opens.
-6. Sign out and confirm that `/jobs` redirects to `/signin`.
-7. Use **Forgot password?**, open the reset link, choose a new password, and
+7. Sign out and confirm that `/jobs` redirects to `/signin`.
+8. Use **Forgot password?**, open the reset link, choose a new password, and
    sign in again.
 
 ## Built-in company catalog
