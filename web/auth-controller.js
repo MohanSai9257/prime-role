@@ -245,8 +245,8 @@ export function createAuthController({
     if (viewName === "verify-otp") {
       const pending = pendingSignup();
       elements["verify-email-text"].textContent = pending?.email
-        ? `If this address can be registered, a 6-digit verification code was sent to ${pending.email}`
-        : "If this address can be registered, a verification code was sent.";
+        ? `We've sent a 6-digit verification code to ${pending.email}`
+        : "We've sent a 6-digit verification code to your email.";
       updateResendButton();
       window.clearInterval(state.resendTimer);
       state.resendTimer = window.setInterval(updateResendButton, 1000);
