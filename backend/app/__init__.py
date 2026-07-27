@@ -1,1 +1,0 @@
-"""Prime Role backend package."""
