@@ -1,56 +1,8 @@
-# Local configuration and secrets
-.env
-data/base-resumes/
-.env.*
-!.env.example
-
-# Python
-__pycache__/
-*.py[cod]
-*.pyd
-*.so
-.Python
-.venv/
-venv/
-env/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-dist/
-build/
-*.egg-info/
-
-# Node / Vite
 node_modules/
-frontend/node_modules/
-frontend/dist/
-*.tsbuildinfo
-.vite/
-
-# Local application data
-/data/
-generated-resumes/
-uploads/
-*.db
-*.sqlite
-*.sqlite3
-
-# Logs and temporary files
-*.log
-logs/
-tmp/
-temp/
-
-# Editors
-.idea/
-.vscode/
-*.iml
-*.swp
-*.swo
-
-# Operating systems
+dist/
+.wrangler/
+.wrangler-build/
+.dev.vars
+.env
 .DS_Store
-Thumbs.db
-Desktop.ini
+npm-debug.log*
