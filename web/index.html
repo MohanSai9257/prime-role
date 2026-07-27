@@ -264,7 +264,10 @@
           </p>
         </div>
         <form id="verify-otp-form" novalidate>
-          <fieldset aria-describedby="verify-otp-error" class="otp-fieldset">
+          <fieldset
+            aria-describedby="verify-otp-notice verify-otp-error"
+            class="otp-fieldset"
+          >
             <legend class="visually-hidden">
               Six-digit email verification code
             </legend>
@@ -320,6 +323,12 @@
               />
             </div>
           </fieldset>
+          <div
+            aria-live="polite"
+            class="auth-notice hidden"
+            id="verify-otp-notice"
+            role="status"
+          ></div>
           <div class="auth-error hidden" id="verify-otp-error" role="alert"></div>
           <button class="auth-submit" id="verify-otp-submit" type="submit">
             <span>Verify</span><span aria-hidden="true">→</span>

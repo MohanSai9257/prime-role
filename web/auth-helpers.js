@@ -270,6 +270,26 @@ export function otpDigits(value) {
   return String(value || "").replace(/\D/g, "").slice(0, 6).split("");
 }
 
+export function otpCooldownSeconds(availableAt, now = Date.now()) {
+  const deadline = Number(availableAt);
+  const currentTime = Number(now);
+  if (!Number.isFinite(deadline) || !Number.isFinite(currentTime)) return 0;
+  return Math.max(0, Math.ceil((deadline - currentTime) / 1000));
+}
+
+export function isOtpCodeError(error) {
+  const code = String(error?.code || "").toLowerCase();
+  const message = String(error?.message || "").toLowerCase();
+  return (
+    code === "otp_expired" ||
+    code === "invalid_otp" ||
+    message.includes("token has expired") ||
+    message.includes("invalid token") ||
+    message.includes("invalid otp") ||
+    message.includes("expired")
+  );
+}
+
 export function friendlyAuthError(error, context = "auth") {
   const code = String(error?.code || "").toLowerCase();
   const message = String(error?.message || "").toLowerCase();
@@ -306,14 +326,8 @@ export function friendlyAuthError(error, context = "auth") {
     return "If this email can be registered, verification instructions will be sent. You can also sign in or reset your password.";
   }
 
-  if (
-    code === "otp_expired" ||
-    code === "invalid_otp" ||
-    message.includes("token has expired") ||
-    message.includes("invalid token") ||
-    message.includes("expired")
-  ) {
-    return "Invalid or expired verification code.";
+  if (isOtpCodeError(error)) {
+    return "The verification code is incorrect or expired. Request a new code and try again.";
   }
 
   if (code === "weak_password" || message.includes("weak password")) {

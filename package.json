@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "dev": "npm run build && wrangler dev --config wrangler.jsonc",
+    "dev": "npm run build && wrangler dev --config wrangler.jsonc --port 8788",
     "deploy": "npm run build && wrangler deploy --config wrangler.jsonc",
     "deploy:cloudflare": "wrangler deploy --config wrangler.jsonc",
     "test": "node --test test/*.test.js",
