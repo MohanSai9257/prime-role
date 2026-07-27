@@ -9,8 +9,10 @@ import {
   chooseQueuedAuthEvent,
   friendlyAuthError,
   isAuthRoute,
+  isOtpCodeError,
   isProtectedPath,
   normalizeEmail,
+  otpCooldownSeconds,
   otpDigits,
   passwordValidationMessage,
   routeDecision,
@@ -181,6 +183,10 @@ test("password and OTP helpers preserve the requested policy", () => {
     /do not match/i
   );
   assert.deepEqual(otpDigits("12a 34-567"), ["1", "2", "3", "4", "5", "6"]);
+  assert.equal(otpCooldownSeconds(61_000, 1_000), 60);
+  assert.equal(otpCooldownSeconds(1_001, 1_000), 1);
+  assert.equal(otpCooldownSeconds(999, 1_000), 0);
+  assert.equal(otpCooldownSeconds("invalid", 1_000), 0);
 });
 
 test("only password-authenticated JWT sessions unlock the workspace", () => {
@@ -317,8 +323,14 @@ test("authentication errors are user-friendly and do not expose internals", () =
   );
   assert.match(
     friendlyAuthError({ code: "otp_expired" }, "verify"),
-    /invalid or expired/i
+    /incorrect or expired/i
   );
+  assert.equal(isOtpCodeError({ code: "invalid_otp" }), true);
+  assert.equal(
+    isOtpCodeError({ message: "Token has expired or is invalid" }),
+    true
+  );
+  assert.equal(isOtpCodeError({ message: "Network failure" }), false);
   assert.match(
     friendlyAuthError({ status: 429 }, "signup"),
     /wait a minute/i
@@ -330,10 +342,13 @@ test("authentication errors are user-friendly and do not expose internals", () =
 });
 
 test("browser source contains the complete password-and-OTP flow", async () => {
-  const [html, controller, app] = await Promise.all([
+  const [html, controller, app, readme, setup, packageJson] = await Promise.all([
     readFile(new URL("../web/index.html", import.meta.url), "utf8"),
     readFile(new URL("../web/auth-controller.js", import.meta.url), "utf8"),
-    readFile(new URL("../web/app.js", import.meta.url), "utf8")
+    readFile(new URL("../web/app.js", import.meta.url), "utf8"),
+    readFile(new URL("../README.md", import.meta.url), "utf8"),
+    readFile(new URL("../SUPABASE_OTP_SETUP.md", import.meta.url), "utf8"),
+    readFile(new URL("../package.json", import.meta.url), "utf8")
   ]);
 
   assert.equal((html.match(/class="otp-input"/g) || []).length, 6);
@@ -351,6 +366,16 @@ test("browser source contains the complete password-and-OTP flow", async () => {
   assert.match(controller, /\.auth\.signUp/);
   assert.match(controller, /\.auth\.verifyOtp/);
   assert.match(controller, /\.auth\.resend/);
+  assert.match(
+    controller,
+    /verifyOtp\(\{\s*email:\s*pending\.email,\s*token,\s*type:\s*"email"\s*\}\)/s
+  );
+  assert.match(
+    controller,
+    /resend\(\{\s*email:\s*pending\.email,\s*type:\s*"signup"\s*\}\)/s
+  );
+  assert.match(html, /id="verify-otp-notice"/);
+  assert.doesNotMatch(html, /click.*confirmation link/i);
   assert.match(controller, /resetPasswordForEmail/);
   assert.match(controller, /updateRecoveryPassword/);
   assert.match(controller, /auth\/v1\/user/);
@@ -369,4 +394,17 @@ test("browser source contains the complete password-and-OTP flow", async () => {
   assert.doesNotMatch(controller, /scope:\s*"global"/);
   assert.doesNotMatch(controller, /user\?\.identities/);
   assert.doesNotMatch(controller, /service_role/i);
+  assert.doesNotMatch(controller, /hasTrustedCallbackType\("signup"\)/);
+  assert.doesNotMatch(controller, /emailRedirectTo:.*accountCreated/);
+  assert.doesNotMatch(app, /"\/account-created",/);
+  assert.doesNotMatch(readme, /use the default confirmation link/i);
+  assert.doesNotMatch(readme, /supports that link too/i);
+  assert.match(setup, /custom SMTP first/i);
+  assert.match(setup, /\{\{ \.Token \}\}/);
+  assert.match(setup, /Do not include `\{\{ \.ConfirmationURL \}\}`/);
+  assert.ok(
+    setup.indexOf("custom SMTP first") <
+      setup.indexOf("Email Templates → Confirm signup")
+  );
+  assert.match(packageJson, /--port 8788/);
 });

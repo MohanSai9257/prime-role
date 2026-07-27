@@ -3,7 +3,7 @@
 Job-discovery + resume workspace. **Vanilla HTML/CSS/JS frontend + one Cloudflare Worker**, deployed together from this repo. No React, TypeScript, Python, or FastAPI. Supabase provides email/password auth with 6-digit email verification. Current build is a **demo slice**: jobs, ATS scores, sponsorship labels, search, and tailoring are simulated — nothing crawls websites or writes files.
 
 ## Commands (Node 22+)
-- `npm run dev` — build + `wrangler dev` → http://localhost:8787
+- `npm run dev` — build + `wrangler dev` → http://localhost:8788
 - `npm test` — Node test runner over `test/*.test.js`
 - `npm run verify` — test + build + wrangler dry-run deploy
 - `npm run deploy` — build + `wrangler deploy`
