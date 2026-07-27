@@ -1151,7 +1151,7 @@ export function createAuthController({
             first_name: values.firstName.trim(),
             last_name: values.lastName.trim()
           },
-          type: "signup"
+          emailRedirectTo: `${window.location.origin}${AUTH_ROUTES.accountCreated}`
         }
       });
       if (error) throw error;
