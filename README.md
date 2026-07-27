@@ -1,218 +1,177 @@
 # Prime Role
 
-Prime Role is a local-first job discovery and resume-tailoring application. It uses a React/Vite/TypeScript frontend and a Python 3.13 FastAPI backend in one repository. Supabase PostgreSQL can store companies, discovered jobs, search runs, and application history.
+Prime Role is a Cloudflare-native job discovery and resume workspace built with
+plain HTML, CSS, and JavaScript. The frontend and JavaScript Worker API deploy
+together from one repository. There is no React, TypeScript, Python, FastAPI,
+JDK, or separate backend service.
 
-The current implementation is the **first working slice**. It includes email-only Supabase sign-in and validated local DOCX base-resume uploads. Its demo job endpoints prove the frontend/backend integration; they are not yet the production collectors, ATS engine, sponsorship classifier, or resume-tailoring workflow.
+The current release is a development slice: company data, three example jobs,
+search results, ATS scores, sponsorship labels, and resume tailoring are
+simulated. It does not yet crawl company websites or generate tailored files.
 
 ## Technology
 
-- Python 3.13 and FastAPI
-- React, Vite, and TypeScript
-- Supabase PostgreSQL (integration-ready)
-- Playwright for future career-site collection
-- One repository and one production web service
+- Vanilla HTML, CSS, and JavaScript
+- Cloudflare Workers and Static Assets
+- Supabase email/password authentication with email verification
+- IndexedDB for browser-local base-resume storage
+- Node.js 22+ and npm for development and deployment
 
-During development, Vite and FastAPI run on separate local ports for fast reloads. After `frontend` is built, FastAPI serves the compiled frontend so the application runs as one service.
+The base resume never leaves the user's browser. Cloudflare Workers do not have
+a persistent laptop filesystem, so the application validates the DOCX and saves
+it in browser storage instead of uploading it to a server.
+
+## Install and run
+
+```bash
+npm clean-install
+npm run dev
+```
+
+Wrangler prints the local URL, normally `http://localhost:8787`.
+
+## Test and verify
+
+```bash
+npm test
+npm run verify
+```
+
+`npm run verify` runs the JavaScript tests, builds the static application, and
+performs a Cloudflare dry-run deployment.
+
+## Deploy from a terminal
+
+Authenticate once:
+
+```bash
+npx wrangler login
+```
+
+Then deploy:
+
+```bash
+npm run deploy
+```
+
+## Cloudflare Git deployment settings
+
+The root directory must be the repository root.
+
+```text
+Build command: npm run build
+Deploy command: npm run deploy:cloudflare
+```
+
+Cloudflare automatically runs `npm clean-install` first. The root
+`package.json` and committed `package-lock.json` make that installation work.
+
+The current Worker name is `app`, matching the Cloudflare project name shown
+during setup. If the Cloudflare project is renamed, update `name` in
+`wrangler.jsonc`.
 
 ## Repository layout
 
 ```text
 prime-role/
-├── backend/               FastAPI API and automation code
-├── frontend/              React/Vite/TypeScript interface
-├── scripts/
-│   ├── dev.sh             macOS/Linux development launcher
-│   └── dev.ps1            Windows PowerShell development launcher
-├── .env.example
-├── .gitignore
-└── README.md
+├── package.json
+├── package-lock.json
+├── wrangler.jsonc
+├── web/                   Plain browser application
+├── worker/                JavaScript API and company catalog
+├── scripts/build.mjs      Static-asset build
+└── test/                  Node JavaScript tests
 ```
 
-## Prerequisites
+## Authentication
 
-Install:
+Prime Role uses Supabase Auth for:
 
-- Git
-- Python 3.13
-- Node.js 24 LTS with npm
-- VS Code, IntelliJ IDEA Ultimate, or PyCharm Professional
-- A Supabase project when database-backed features are enabled
+- Email/password sign up
+- Six-digit email verification
+- Email/password sign in
+- Password recovery and password update
+- Persistent, refreshable sessions and logout
 
-JDK is not required for this Python/React implementation.
+The browser contains only the Supabase project URL and publishable key. No
+service-role key, database password, plain-text password, or OTP is stored by
+Prime Role. Protected Worker APIs validate the bearer token against Supabase
+before returning application data.
 
-## macOS setup
+The public browser routes are:
 
-### 1. Install tools
-
-With [Homebrew](https://brew.sh/):
-
-```bash
-brew install git python@3.13 node
+```text
+/signin
+/signup
+/verify-otp
+/account-created
+/forgot-password
+/update-password
 ```
 
-Confirm the installations:
+`/dashboard`, `/jobs`, `/profile`, `/resume`, `/run-history`,
+`/applications`, and `/settings` require a server-validated Supabase session.
+Anonymous navigation is returned to `/signin`. Signup verification and
+password-recovery sessions are explicitly prevented from opening the
+workspace. Protected Worker endpoints also require the access token's
+Supabase `amr` claim to include `password`.
 
-```bash
-git --version
-python3.13 --version
-node --version
-npm --version
-```
+Browser-local settings and IndexedDB resume records are keyed by the validated
+Supabase user ID. Signing out clears user-derived UI, modals, and notifications,
+so accounts sharing one browser profile do not inherit each other's resume
+metadata or settings.
 
-### 2. Prepare the repository
+### Required Supabase Auth configuration
 
-```bash
-git clone <repository-url> prime-role
-cd prime-role
-python3.13 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r backend/requirements.txt
-npm --prefix frontend install
-cp .env.example .env
-```
+In the `prime-role-dev` Supabase project:
 
-Add the Supabase URL and publishable key to `.env`. Never commit that file. Authentication requires these values.
+1. Enable the Email provider and email signups.
+2. Keep **Confirm email** enabled.
+3. Set the minimum password length to at least 8.
+4. Set the email OTP expiry to 3600 seconds or less.
+5. Enable leaked-password protection if the Supabase plan supports it.
+6. Set the production Site URL and allow these redirect destinations:
+   - `http://localhost:8787/account-created`
+   - `http://localhost:8787/update-password`
+   - `https://YOUR-CLOUDFLARE-HOST/account-created`
+   - `https://YOUR-CLOUDFLARE-HOST/update-password`
+7. Configure custom SMTP for production.
+8. In the **Confirm signup** email template, display the six-digit token with
+   `{{ .Token }}`. Keep the password-recovery template's secure confirmation
+   link.
 
-### 3. Start development
+The project was created after June 3, 2026. New Free projects using Supabase's
+default email provider cannot customize auth templates, so custom SMTP (or a
+paid Supabase plan) is required before the email can contain the requested
+six-digit code. Until that is configured, Supabase sends its default
+confirmation link. Prime Role safely supports that link too: confirmation
+shows **Account created**, signs the temporary verification session out, and
+still requires an explicit password sign in.
 
-```bash
-chmod +x scripts/dev.sh
-./scripts/dev.sh
-```
+No additional application secret or environment variable is required for this
+browser-based Supabase flow. Never add a Supabase secret/service-role key to
+`web/`, `worker/`, Wrangler variables exposed to the browser, or Git.
 
-## Windows setup
+### Local authentication test
 
-Run these commands in PowerShell.
-
-### 1. Install tools
-
-Using Windows Package Manager:
-
-```powershell
-winget install --id Git.Git -e
-winget install --id Python.Python.3.13 -e
-winget install --id OpenJS.NodeJS.LTS -e
-```
-
-Close and reopen PowerShell, then confirm:
-
-```powershell
-git --version
-py -3.13 --version
-node --version
-npm --version
-```
-
-### 2. Prepare the repository
-
-```powershell
-git clone <repository-url> prime-role
-Set-Location prime-role
-py -3.13 -m venv .venv
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r backend\requirements.txt
-npm --prefix frontend install
-Copy-Item .env.example .env
-```
-
-Add the Supabase URL and publishable key to `.env`. Never commit that file. Authentication requires these values.
-
-### 3. Start development
-
-```powershell
-.\scripts\dev.ps1
-```
-
-## Local addresses
-
-When the development launcher is running:
-
-- Frontend: `http://127.0.0.1:5173`
-- FastAPI: `http://127.0.0.1:8000`
-- Interactive API documentation: `http://127.0.0.1:8000/docs`
-
-Set `BACKEND_PORT` or `FRONTEND_PORT` before starting the launcher to override either port.
-
-## Run services separately
-
-This is useful when debugging in an IDE.
-
-Backend:
-
-```bash
-source .venv/bin/activate
-python -m uvicorn app.main:app --app-dir backend --reload --host 127.0.0.1 --port 8000
-```
-
-Frontend:
-
-```bash
-npm --prefix frontend run dev
-```
-
-On Windows, activate the environment with `.\.venv\Scripts\Activate.ps1`; the remaining commands are the same.
-
-## Build as one application
-
-Build the React frontend:
-
-```bash
-npm --prefix frontend run build
-```
-
-Then run FastAPI:
-
-```bash
-python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port 8000
-```
-
-FastAPI serves `frontend/dist` when that build exists. Open `http://127.0.0.1:8000`.
-
-## Supabase configuration
-
-Create a Supabase project and copy `.env.example` to `.env`. Configure:
-
-- `SUPABASE_URL`
-- `SUPABASE_PUBLISHABLE_KEY`
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
-- `DATABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY` only if a server-side administrative operation requires it
-
-The Vite variables intentionally expose only the browser-safe project URL and publishable key. The browser must never receive the database password or service-role key. React calls FastAPI, and FastAPI performs privileged database and automation work.
-
-Supabase sends a magic link with its default passwordless email template. If a
-six-digit code is added to that template later, the same sign-in page can also
-verify the code.
-
-## Local base resume
-
-Upload the base resume from **Today's workspace** after signing in. The current
-slice accepts a valid `.docx` file up to 10 MB and stores it under the ignored
-`data/base-resumes` directory. The original upload is not modified, and resume
-contents are not stored in Supabase.
+1. Run `npm run dev` and open `http://localhost:8787/signup`.
+2. Create an account and confirm that `/verify-otp` opens.
+3. Enter the six-digit code, or use the default confirmation link while custom
+   SMTP is not configured.
+4. Confirm that `/account-created` appears and the workspace remains locked.
+5. Select **Go to Sign in**, enter the email/password, and confirm that
+   `/dashboard` opens.
+6. Sign out and confirm that `/jobs` redirects to `/signin`.
+7. Use **Forgot password?**, open the reset link, choose a new password, and
+   sign in again.
 
 ## Built-in company catalog
-
-The company list is version-controlled at `backend/app/data/companies.json`; users do not upload a company spreadsheet. The catalog was generated from `Companies-List.xlsx` and preserves its three categories:
 
 - `IMPLEMENTATION`: 230 companies
 - `DIRECT_CLIENT`: 0 companies in the supplied workbook
 - `VENDOR`: 0 companies in the supplied workbook
 
-The Type selector uses these categories and the backend reports the real configured count for the selected type. Empty categories remain selectable, but a search over an empty category reports zero companies until a future workbook supplies those rows.
+Empty categories remain selectable and correctly produce zero search results.
 
-## Planned MVP flow
-
-1. Select a built-in company type: Direct Client, Implementation, or Vendor.
-2. Select a base resume, output folder, and search-from date.
-3. Collect new public jobs without repeating previously seen job IDs or canonical URLs.
-4. Show company name, job title, job URL, ATS score, and sponsorship status (`Confirmed`, `Unclear`, or `No`).
-5. Tailor a resume for one selected job from the untouched base resume.
-6. Replace only the previously generated resume, never the base resume.
-7. Preserve search history so the next run covers the previous run date through today.
-
-ATS percentages are application-defined similarity scores, not guarantees of how an employer's private ATS will score a resume. Tailoring must remain truthful and must not invent skills or experience.
+ATS percentages are application-defined similarity indicators, not guarantees
+of an employer's private ATS score. Resume tailoring must remain truthful.

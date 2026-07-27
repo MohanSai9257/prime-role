@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Prime Role finds relevant roles and creates truthful, tailored resumes."
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Prime Role</title>
+  </head>
+  <body>
+    <main class="auth-loading" id="auth-loading">
+      <div class="brand-mark">P</div>
+      <span>Opening Prime Role…</span>
+    </main>
+
+    <main class="auth-shell hidden" id="auth-screen">
+      <svg aria-hidden="true" class="svg-sprite">
+        <symbol id="icon-briefcase" viewBox="0 0 24 24">
+          <path
+            d="M9 6V4.75C9 3.78 9.78 3 10.75 3h2.5C14.22 3 15 3.78 15 4.75V6m-12 4.25h18M4.75 6h14.5C20.22 6 21 6.78 21 7.75v10.5c0 .97-.78 1.75-1.75 1.75H4.75C3.78 20 3 19.22 3 18.25V7.75C3 6.78 3.78 6 4.75 6ZM10 10v2h4v-2"
+          />
+        </symbol>
+        <symbol id="icon-user" viewBox="0 0 24 24">
+          <path
+            d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"
+          />
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+          <path
+            d="M4.5 6.5h15A1.5 1.5 0 0 1 21 8v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17V8a1.5 1.5 0 0 1 1.5-1.5Zm-.75.75L12 13l8.25-5.75"
+          />
+        </symbol>
+        <symbol id="icon-lock" viewBox="0 0 24 24">
+          <path
+            d="M7 10V7a5 5 0 0 1 10 0v3m-10.5 0h11A1.5 1.5 0 0 1 19 11.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18.5v-7A1.5 1.5 0 0 1 6.5 10ZM12 14v2"
+          />
+        </symbol>
+        <symbol id="icon-eye" viewBox="0 0 24 24">
+          <path
+            d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Zm9.5 2.75A2.75 2.75 0 1 0 12 9.25a2.75 2.75 0 0 0 0 5.5Z"
+          />
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path d="m5 12.5 4.25 4.25L19.5 6.5" />
+        </symbol>
+      </svg>
+
+      <section
+        aria-labelledby="signin-title"
+        class="auth-card auth-view hidden"
+        data-auth-view="signin"
+        id="signin-view"
+      >
+        <div class="auth-logo">
+          <span class="auth-logo-mark">
+            <svg><use href="#icon-briefcase"></use></svg>
+          </span>
+          <strong>Prime Role</strong>
+        </div>
+        <div class="auth-heading">
+          <h1 id="signin-title">Welcome back!</h1>
+          <p>Sign in to continue</p>
+        </div>
+        <div
+          class="auth-notice hidden"
+          id="signin-notice"
+          role="status"
+        ></div>
+        <form id="signin-form" novalidate>
+          <label class="auth-field" for="signin-email">Email</label>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
+            <input
+              aria-describedby="signin-error"
+              autocomplete="username"
+              id="signin-email"
+              inputmode="email"
+              placeholder="you@example.com"
+              required
+              type="email"
+            />
+          </div>
+          <div class="auth-field-heading">
+            <label class="auth-field" for="signin-password">Password</label>
+            <a data-auth-link href="/forgot-password">Forgot password?</a>
+          </div>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-lock"></use></svg>
+            <input
+              aria-describedby="signin-error"
+              autocomplete="current-password"
+              id="signin-password"
+              placeholder="Enter your password"
+              required
+              type="password"
+            />
+            <button
+              aria-controls="signin-password"
+              aria-label="Show password"
+              aria-pressed="false"
+              class="password-toggle"
+              data-toggle-password="signin-password"
+              type="button"
+            >
+              <svg aria-hidden="true"><use href="#icon-eye"></use></svg>
+            </button>
+          </div>
+          <div class="auth-error hidden" id="signin-error" role="alert"></div>
+          <button class="auth-submit" id="signin-submit" type="submit">
+            <span>Sign in</span><span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <div class="auth-divider"><span>or</span></div>
+        <p class="auth-switch">
+          Don't have an account?
+          <a data-auth-link href="/signup">Sign up</a>
+        </p>
+      </section>
+
+      <section
+        aria-labelledby="signup-title"
+        class="auth-card auth-card-wide auth-view hidden"
+        data-auth-view="signup"
+        id="signup-view"
+      >
+        <div class="auth-logo">
+          <span class="auth-logo-mark">
+            <svg><use href="#icon-briefcase"></use></svg>
+          </span>
+          <strong>Prime Role</strong>
+        </div>
+        <div class="auth-heading">
+          <h1 id="signup-title">Create your account</h1>
+          <p>Sign up to get started</p>
+        </div>
+        <form id="signup-form" novalidate>
+          <div class="auth-name-grid">
+            <div>
+              <label class="auth-field" for="signup-first-name">
+                First Name
+              </label>
+              <div class="auth-input">
+                <svg aria-hidden="true"><use href="#icon-user"></use></svg>
+                <input
+                  aria-describedby="signup-error"
+                  autocomplete="given-name"
+                  id="signup-first-name"
+                  placeholder="Enter your first name"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label class="auth-field" for="signup-last-name">
+                Last Name
+              </label>
+              <div class="auth-input">
+                <svg aria-hidden="true"><use href="#icon-user"></use></svg>
+                <input
+                  aria-describedby="signup-error"
+                  autocomplete="family-name"
+                  id="signup-last-name"
+                  placeholder="Enter your last name"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <label class="auth-field" for="signup-email">Email</label>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
+            <input
+              aria-describedby="signup-error"
+              autocomplete="email"
+              id="signup-email"
+              inputmode="email"
+              placeholder="you@example.com"
+              required
+              type="email"
+            />
+          </div>
+          <label class="auth-field" for="signup-password">
+            Create Password
+          </label>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-lock"></use></svg>
+            <input
+              aria-describedby="password-requirements signup-error"
+              autocomplete="new-password"
+              id="signup-password"
+              placeholder="Enter your password"
+              required
+              type="password"
+            />
+            <button
+              aria-controls="signup-password"
+              aria-label="Show password"
+              aria-pressed="false"
+              class="password-toggle"
+              data-toggle-password="signup-password"
+              type="button"
+            >
+              <svg aria-hidden="true"><use href="#icon-eye"></use></svg>
+            </button>
+          </div>
+          <p class="password-requirements" id="password-requirements">
+            Use 8+ characters with uppercase, lowercase and a number.
+          </p>
+          <label class="auth-field" for="signup-confirm-password">
+            Re-enter Password
+          </label>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-lock"></use></svg>
+            <input
+              aria-describedby="signup-error"
+              autocomplete="new-password"
+              id="signup-confirm-password"
+              placeholder="Re-enter your password"
+              required
+              type="password"
+            />
+            <button
+              aria-controls="signup-confirm-password"
+              aria-label="Show password"
+              aria-pressed="false"
+              class="password-toggle"
+              data-toggle-password="signup-confirm-password"
+              type="button"
+            >
+              <svg aria-hidden="true"><use href="#icon-eye"></use></svg>
+            </button>
+          </div>
+          <div class="auth-error hidden" id="signup-error" role="alert"></div>
+          <button class="auth-submit" id="signup-submit" type="submit">
+            <span>Sign up</span><span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <div class="auth-divider"><span>or</span></div>
+        <p class="auth-switch">
+          Already have an account?
+          <a data-auth-link href="/signin">Sign in</a>
+        </p>
+      </section>
+
+      <section
+        aria-labelledby="verify-title"
+        class="auth-card auth-view hidden"
+        data-auth-view="verify-otp"
+        id="verify-otp-view"
+      >
+        <div class="auth-logo">
+          <span class="auth-logo-mark">
+            <svg><use href="#icon-briefcase"></use></svg>
+          </span>
+          <strong>Prime Role</strong>
+        </div>
+        <div class="auth-heading auth-heading-spacious">
+          <h1 id="verify-title">Verify your email</h1>
+          <p id="verify-email-text">
+            If this address can be registered, a verification code was sent.
+          </p>
+        </div>
+        <form id="verify-otp-form" novalidate>
+          <fieldset aria-describedby="verify-otp-error" class="otp-fieldset">
+            <legend class="visually-hidden">
+              Six-digit email verification code
+            </legend>
+            <div class="otp-inputs">
+              <input
+                aria-label="Verification code digit 1"
+                autocomplete="one-time-code"
+                class="otp-input"
+                data-otp-index="0"
+                inputmode="numeric"
+                maxlength="1"
+                pattern="[0-9]*"
+              />
+              <input
+                aria-label="Verification code digit 2"
+                class="otp-input"
+                data-otp-index="1"
+                inputmode="numeric"
+                maxlength="1"
+                pattern="[0-9]*"
+              />
+              <input
+                aria-label="Verification code digit 3"
+                class="otp-input"
+                data-otp-index="2"
+                inputmode="numeric"
+                maxlength="1"
+                pattern="[0-9]*"
+              />
+              <input
+                aria-label="Verification code digit 4"
+                class="otp-input"
+                data-otp-index="3"
+                inputmode="numeric"
+                maxlength="1"
+                pattern="[0-9]*"
+              />
+              <input
+                aria-label="Verification code digit 5"
+                class="otp-input"
+                data-otp-index="4"
+                inputmode="numeric"
+                maxlength="1"
+                pattern="[0-9]*"
+              />
+              <input
+                aria-label="Verification code digit 6"
+                class="otp-input"
+                data-otp-index="5"
+                inputmode="numeric"
+                maxlength="1"
+                pattern="[0-9]*"
+              />
+            </div>
+          </fieldset>
+          <div class="auth-error hidden" id="verify-otp-error" role="alert"></div>
+          <button class="auth-submit" id="verify-otp-submit" type="submit">
+            <span>Verify</span><span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <p class="resend-line">
+          Didn't receive the code?
+          <button id="resend-otp" type="button">Resend OTP</button>
+        </p>
+        <div class="auth-divider"><span>or</span></div>
+        <p class="auth-switch">
+          Already have an account?
+          <a data-auth-link href="/signin">Sign in</a>
+        </p>
+      </section>
+
+      <section
+        aria-labelledby="account-created-title"
+        class="auth-card auth-view hidden"
+        data-auth-view="account-created"
+        id="account-created-view"
+      >
+        <div class="auth-logo">
+          <span class="auth-logo-mark">
+            <svg><use href="#icon-briefcase"></use></svg>
+          </span>
+          <strong>Prime Role</strong>
+        </div>
+        <div aria-hidden="true" class="success-art">
+          <span class="confetti confetti-one"></span>
+          <span class="confetti confetti-two"></span>
+          <span class="confetti confetti-three"></span>
+          <span class="confetti confetti-four"></span>
+          <span class="account-check">
+            <svg><use href="#icon-check"></use></svg>
+          </span>
+        </div>
+        <div class="auth-heading auth-heading-spacious">
+          <h1 id="account-created-title">Account created!</h1>
+          <p>
+            Your account has been created successfully.<br />
+            You can now sign in.
+          </p>
+        </div>
+        <button class="auth-submit" id="go-to-signin" type="button">
+          <span>Go to Sign in</span><span aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <section
+        aria-labelledby="forgot-password-title"
+        class="auth-card auth-view hidden"
+        data-auth-view="forgot-password"
+        id="forgot-password-view"
+      >
+        <div class="auth-logo">
+          <span class="auth-logo-mark">
+            <svg><use href="#icon-briefcase"></use></svg>
+          </span>
+          <strong>Prime Role</strong>
+        </div>
+        <div class="auth-heading">
+          <h1 id="forgot-password-title">Reset your password</h1>
+          <p>We'll email you a secure password-reset link.</p>
+        </div>
+        <div
+          class="auth-notice hidden"
+          id="forgot-password-notice"
+          role="status"
+        ></div>
+        <form id="forgot-password-form" novalidate>
+          <label class="auth-field" for="forgot-password-email">Email</label>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
+            <input
+              aria-describedby="forgot-password-error"
+              autocomplete="email"
+              id="forgot-password-email"
+              inputmode="email"
+              placeholder="you@example.com"
+              required
+              type="email"
+            />
+          </div>
+          <div
+            class="auth-error hidden"
+            id="forgot-password-error"
+            role="alert"
+          ></div>
+          <button
+            class="auth-submit"
+            id="forgot-password-submit"
+            type="submit"
+          >
+            <span>Send reset link</span><span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <div class="auth-divider"><span>or</span></div>
+        <p class="auth-switch">
+          Remembered your password?
+          <a data-auth-link href="/signin">Sign in</a>
+        </p>
+      </section>
+
+      <section
+        aria-labelledby="update-password-title"
+        class="auth-card auth-view hidden"
+        data-auth-view="update-password"
+        id="update-password-view"
+      >
+        <div class="auth-logo">
+          <span class="auth-logo-mark">
+            <svg><use href="#icon-briefcase"></use></svg>
+          </span>
+          <strong>Prime Role</strong>
+        </div>
+        <div class="auth-heading">
+          <h1 id="update-password-title">Create a new password</h1>
+          <p>Choose a strong password for your Prime Role account.</p>
+        </div>
+        <form id="update-password-form" novalidate>
+          <label class="auth-field" for="update-password">
+            New Password
+          </label>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-lock"></use></svg>
+            <input
+              aria-describedby="update-password-error"
+              autocomplete="new-password"
+              id="update-password"
+              placeholder="Enter a new password"
+              required
+              type="password"
+            />
+            <button
+              aria-controls="update-password"
+              aria-label="Show password"
+              aria-pressed="false"
+              class="password-toggle"
+              data-toggle-password="update-password"
+              type="button"
+            >
+              <svg aria-hidden="true"><use href="#icon-eye"></use></svg>
+            </button>
+          </div>
+          <p class="password-requirements">
+            Use 8+ characters with uppercase, lowercase and a number.
+          </p>
+          <label class="auth-field" for="update-confirm-password">
+            Re-enter Password
+          </label>
+          <div class="auth-input">
+            <svg aria-hidden="true"><use href="#icon-lock"></use></svg>
+            <input
+              aria-describedby="update-password-error"
+              autocomplete="new-password"
+              id="update-confirm-password"
+              placeholder="Re-enter your new password"
+              required
+              type="password"
+            />
+            <button
+              aria-controls="update-confirm-password"
+              aria-label="Show password"
+              aria-pressed="false"
+              class="password-toggle"
+              data-toggle-password="update-confirm-password"
+              type="button"
+            >
+              <svg aria-hidden="true"><use href="#icon-eye"></use></svg>
+            </button>
+          </div>
+          <div
+            class="auth-error hidden"
+            id="update-password-error"
+            role="alert"
+          ></div>
+          <button
+            class="auth-submit"
+            id="update-password-submit"
+            type="submit"
+          >
+            <span>Update password</span><span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <main class="app-shell hidden" id="workspace-screen">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">P</div>
+          <div>
+            <strong>Prime Role</strong>
+            <span>Career workspace</span>
+          </div>
+        </div>
+        <nav aria-label="Primary navigation">
+          <button class="nav-item active" data-nav="Jobs" type="button">
+            <span class="nav-icon">⌕</span>Jobs
+            <span class="nav-count" id="job-count-nav">0</span>
+          </button>
+          <button class="nav-item" data-nav="Run history" type="button">
+            <span class="nav-icon">↻</span>Run history
+          </button>
+          <button class="nav-item" data-nav="Applications" type="button">
+            <span class="nav-icon">✓</span>Applications
+          </button>
+          <button class="nav-item" data-nav="Settings" type="button">
+            <span class="nav-icon">⚙</span>Settings
+          </button>
+        </nav>
+        <div class="sidebar-card">
+          <span class="status-dot connecting" id="status-dot"></span>
+          <div>
+            <strong id="connection-title">Connecting…</strong>
+            <p>Cloudflare JavaScript Worker</p>
+          </div>
+        </div>
+        <div class="profile">
+          <div class="avatar" id="profile-initials">PR</div>
+          <div>
+            <strong id="profile-email">Signed-in user</strong>
+            <span>Signed in with Supabase</span>
+          </div>
+          <button
+            aria-label="Sign out"
+            id="sign-out"
+            title="Sign out"
+            type="button"
+          >
+            ↪
+          </button>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div class="mobile-brand">
+            <div class="brand-mark">P</div>
+            <strong>Prime Role</strong>
+          </div>
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="job-search" placeholder="Search jobs or companies" />
+            <kbd>⌘ K</kbd>
+          </label>
+          <span class="slice-pill">JAVASCRIPT WORKER</span>
+          <button class="help-button" type="button">?</button>
+        </header>
+
+        <div class="content">
+          <div
+            class="connection-banner hidden"
+            id="connection-banner"
+            role="alert"
+          >
+            <strong>Worker connection failed.</strong>
+            <span>Refresh the page or check the Cloudflare deployment.</span>
+          </div>
+
+          <section class="hero">
+            <div>
+              <p class="eyebrow">JOB DISCOVERY</p>
+              <h1>Your next opportunity,<br />all in one place.</h1>
+              <p class="hero-copy">
+                Find new roles across the selected company type, compare your
+                match and create a truthful tailored resume when you are ready.
+              </p>
+            </div>
+            <button class="run-button" id="run-search" type="button">
+              <span>↻</span><span id="run-search-label">Run job search</span>
+            </button>
+          </section>
+
+          <section class="setup-card">
+            <div class="setup-heading">
+              <div>
+                <span class="section-kicker">SEARCH SETUP</span>
+                <h2>Today's workspace</h2>
+              </div>
+              <button class="edit-button" id="open-settings" type="button">
+                <span>✎</span> Edit setup
+              </button>
+            </div>
+            <div class="setup-grid">
+              <div class="setup-item resume-setup-item">
+                <span class="setup-icon green">▱</span>
+                <div>
+                  <label>Base resume</label>
+                  <strong id="base-resume-name">No resume uploaded</strong>
+                  <button
+                    class="resume-upload-button"
+                    id="upload-resume"
+                    type="button"
+                  >
+                    Upload base resume
+                  </button>
+                  <input
+                    accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    class="visually-hidden"
+                    id="resume-file"
+                    type="file"
+                  />
+                  <span class="protected">
+                    ● Browser-local original · DOCX up to 10 MB
+                  </span>
+                </div>
+              </div>
+              <div class="setup-item">
+                <span class="setup-icon blue">▦</span>
+                <div>
+                  <label for="company-type">Type</label>
+                  <select class="setup-select" id="company-type">
+                    <option value="DIRECT_CLIENT">DIRECT CLIENT</option>
+                    <option value="IMPLEMENTATION">IMPLEMENTATION</option>
+                    <option value="VENDOR">VENDOR</option>
+                  </select>
+                  <span id="company-count">Company count unavailable</span>
+                </div>
+              </div>
+              <div class="setup-item">
+                <span class="setup-icon amber">◫</span>
+                <div>
+                  <label>Find jobs posted since</label>
+                  <strong id="start-date-display">Jul 25, 2026</strong>
+                  <span>Previously seen jobs excluded</span>
+                </div>
+              </div>
+              <div class="setup-item">
+                <span class="setup-icon violet">⌁</span>
+                <div>
+                  <label>Tailored resume output</label>
+                  <strong id="output-directory-display">generated-resumes</strong>
+                  <span>Downloaded to your device when enabled</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="results-section">
+            <div class="results-heading">
+              <div>
+                <div class="heading-line">
+                  <h2>New matching jobs</h2>
+                  <span class="result-badge" id="visible-job-count">0</span>
+                </div>
+                <p>Sample data is served by the Cloudflare Worker.</p>
+              </div>
+              <div class="result-actions">
+                <select
+                  aria-label="Filter by sponsorship"
+                  id="sponsorship-filter"
+                >
+                  <option>All sponsorship</option>
+                  <option>Confirmed</option>
+                  <option>Unclear</option>
+                  <option>No</option>
+                </select>
+                <button class="export-button" type="button">⇩ Export</button>
+              </div>
+            </div>
+            <div class="jobs-table">
+              <div class="table-head">
+                <span>COMPANY</span><span>JOB</span><span>JOB URL</span>
+                <span>ATS SCORE</span><span>SPONSORSHIP</span><span></span>
+              </div>
+              <div id="job-rows"></div>
+            </div>
+            <div class="results-footer">
+              <p>
+                <span>✓</span> Duplicate prevention will use source job ID,
+                canonical URL and stable content hash.
+              </p>
+              <button type="button">View run details →</button>
+            </div>
+          </section>
+
+          <footer>
+            <span>Prime Role v1.0 JavaScript Worker</span>
+            <span>Frontend and API in one Cloudflare deployment</span>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop hidden" id="settings-modal">
+      <section
+        aria-labelledby="settings-title"
+        aria-modal="true"
+        class="settings-modal"
+        role="dialog"
+      >
+        <div class="modal-header">
+          <div>
+            <span class="section-kicker">EDIT WORKSPACE</span>
+            <h2 id="settings-title">Search and resume setup</h2>
+          </div>
+          <button
+            aria-label="Close settings"
+            class="close-button"
+            data-close-settings
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <div class="form-grid">
+          <div class="settings-resume-readonly">
+            <span>Base resume</span>
+            <strong id="settings-resume-name">No resume uploaded</strong>
+            <small>
+              Upload or replace it from Today's workspace. It remains in this
+              browser and is never sent to Cloudflare.
+            </small>
+          </div>
+          <label>
+            Company type
+            <select id="settings-company-type">
+              <option value="DIRECT_CLIENT">DIRECT CLIENT</option>
+              <option value="IMPLEMENTATION">IMPLEMENTATION</option>
+              <option value="VENDOR">VENDOR</option>
+            </select>
+            <small>Companies are loaded from the built-in catalog.</small>
+          </label>
+          <label>
+            Find jobs posted since
+            <input id="settings-start-date" type="date" />
+          </label>
+          <label>
+            Tailored resume output folder
+            <input id="settings-output-directory" />
+          </label>
+          <label class="full-field">
+            Target roles
+            <input id="settings-target-roles" />
+          </label>
+        </div>
+        <div class="modal-note">
+          <span>i</span>
+          Settings and the base resume are stored locally in this browser.
+        </div>
+        <div class="modal-actions">
+          <button class="cancel-button" data-close-settings type="button">
+            Cancel
+          </button>
+          <button class="save-button" id="save-settings" type="button">
+            Save changes
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop hidden" id="tailor-modal">
+      <section
+        aria-labelledby="tailor-title"
+        aria-modal="true"
+        class="success-modal"
+        role="dialog"
+      >
+        <div class="success-icon">✓</div>
+        <span class="section-kicker">DEMO RESULT</span>
+        <h2 id="tailor-title">Resume workflow connected</h2>
+        <p id="tailor-message"></p>
+        <div class="score-improvement">
+          <div>
+            <span>Current score</span><strong id="current-score">0%</strong>
+          </div>
+          <span class="improvement-arrow">→</span>
+          <div>
+            <span>Target score</span><strong id="target-score">95%</strong>
+          </div>
+        </div>
+        <div class="file-preview">
+          <span>W</span>
+          <div>
+            <strong id="tailor-file-name">Current_Tailored_Resume.docx</strong>
+            <small id="tailor-output-path">generated-resumes</small>
+          </div>
+        </div>
+        <div class="demo-warning">
+          No resume file is generated by this development slice.
+        </div>
+        <div class="success-actions">
+          <button class="cancel-button" id="close-tailor" type="button">
+            Close
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast hidden" id="toast" role="status">
+      <span id="toast-icon">✓</span><span id="toast-message"></span>
+    </div>
+
+    <script src="/vendor/supabase.js"></script>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
