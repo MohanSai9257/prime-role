@@ -1,0 +1,32 @@
+name: Feature request
+description: Suggest a focused improvement to Prime Role.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What user need or difficulty would this address?
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+      description: Describe how you would expect the feature to work.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: checkboxes
+    id: implementation
+    attributes:
+      label: Implementation
+      options:
+        - label: I would like to work on implementing this feature.
+          required: false
