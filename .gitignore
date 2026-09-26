@@ -6,3 +6,16 @@ dist/
 .env
 .DS_Store
 npm-debug.log*
+
+# Local agent/editor configuration
+.claude/settings.local.json
+
+# Local environment and secret files
+.env.*
+!.env.example
+*.pem
+*.key
+.AppleDouble
+Thumbs.db
+.idea/
+*.swp

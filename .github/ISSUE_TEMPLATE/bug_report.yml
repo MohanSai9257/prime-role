@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible problem in Prime Role.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please remove personal information, tokens, and secrets from this report and any logs."
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: List the steps needed to reproduce the problem.
+      placeholder: "1. ...\n2. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Browser and runtime details
+      description: Include browser/version, operating system, and whether this was local or deployed.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs (secrets removed)
+      description: Include only logs relevant to the issue. Redact secrets and personal data.
+    validations:
+      required: false
